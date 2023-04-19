@@ -2,29 +2,21 @@
 
 cor&#46;io is a web-based choreographing tool that simplifies the song and formation selection process so choreographers can focus on what really matters - the creative process.
 
-## File Structure
-- **app/** - contains the core functionality of the cor&#46;io application
-  - **formations/** - contains the files for the formations suggestion portion of cor&#46;io
-    - **formations&#46;py** - Python code for the formations suggestion functionality
-  - **songs/** - contains the files for the songs suggestion portion of cor&#46;io
-    - **songs&#46;py** - Python code for the songs suggestion functionality
-- **static/** - contains the static components of the web portion of cor&#46;io
-  - **img/** - contains the images for the web portion of cor&#46;io
-    - There's no need to go in detail here so I won't
-  - **js/** - contains the JavaScript for the web portion of cor&#46;io
-    - **main&#46;js** - JavaScript code to drive website
-  - **styles/** - contains the CSS for the web portion of cor&#46;io
-    - **styles.css** - CSS styles to format website
-- **templates/** - contains the HTML files for the web portion of cor&#46;io
-  - **index&#46;html** - HTML template for website
-- **README&#46;md** - you're reading this right now
-- **requirements&#46;txt** - lists all the Python libraries that the app depends on
+## Directory Structure
+- **app/** - holds core functionality of cor&#46;io
+  - **formations/** - holds formations suggestion functionality
+  - **songs/** - holds songs suggestion functionality
+- **static/** - holds static web components of cor&#46;io
+  - **img/** - holds images
+  - **js/** - holds JS
+  - **styles/** - holds CSS
+- **templates/** - holds HTML templates of web cor&#46;io
 
 ## Tech
 
 cor&#46;io uses the following technologies to work properly:
 
-- [framework] - As the core application is built on Python, <fill in> was used to <justification>
+- [node.js](https://nodejs.org/en) - for the JavaScript backend
 
 ## Installation
 
@@ -36,15 +28,14 @@ git clone https://github.com/JustinFJia/cor.io.git
 cd cor.io
 ```
 
-Ensure that you have [Python](https://www.python.org/downloads/) and [pip](https://www.liquidweb.com/kb/install-pip-windows/) installed. The most recent version of Python should suffice.
+Ensure that you have [Node.js](https://nodejs.org/en) installed.
 
 ```sh
-python --version
-pip -V
+node --version
 ```
 
-Install all the dependencies.
+Install the dependencies and devDependencies.
 
 ```sh
-pip install -r requirements.txt
+npm install
 ```
