@@ -1,6 +1,9 @@
 import { Configuration, OpenAIApi } from "openai"
-const readline = require('readline')
+import readline from "readline"
+import {config} from "dotenv"
+import { start } from "repl"
 
+config()
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 })
@@ -15,7 +18,21 @@ const ui = readline.createInterface({
     output: process.stdout
 })
 
-ui.question('some prompt to the user', async function(userResponse) {
+let startFormations
+
+async function getStart() {
+    startFormations = await openai.createChatCompletion({
+        model: "gpt-3.5-turbo",
+        messages: [{
+            'role': 'user',
+            'content': 'Given the song "Motley Crew" by Post Malone, generate a set of 5 potential starting formations for a dance piece that uses that song.'
+        }],
+        temperature: 0.5
+    })
+    console.log(startFormations)
+}
+
+ui.question('ask the user something here', async function(userResponse) {
     const openaiResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [{
