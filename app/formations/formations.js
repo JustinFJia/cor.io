@@ -21,7 +21,7 @@ const ui = readline.createInterface({
 let startFormations
 
 async function getStart() {
-    startFormations = await openai.createChatCompletion({
+    const startFormationsReponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [{
             'role': 'user',
@@ -29,17 +29,20 @@ async function getStart() {
         }],
         temperature: 0.5
     })
+    startFormations = startFormationsReponse.data.choices[0].message.content
     console.log(startFormations)
 }
 
-ui.question('ask the user something here', async function(userResponse) {
-    const openaiResponse = await openai.createChatCompletion({
-        model: "gpt-3.5-turbo",
-        messages: [{
-            'role': 'user',
-            'content': userResponse
-        }],
-        temperature: 0.5
-    })
-    console.log(openaiResponse)
-})
+getStart()
+
+// ui.question('ask the user something here', async function(userResponse) {
+//     const openaiResponse = await openai.createChatCompletion({
+//         model: "gpt-3.5-turbo",
+//         messages: [{
+//             'role': 'user',
+//             'content': userResponse
+//         }],
+//         temperature: 0.5
+//     })
+//     console.log(openaiResponse)
+// })
