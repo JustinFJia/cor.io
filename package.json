@@ -2,15 +2,19 @@
   "name": "cor.io",
   "version": "0.1.0",
   "description": "Web-based choreography tool to simplify song and formation selection",
-  "type" : "module",
+  "type": "module",
   "scripts": {
     "formations_dev": "node app/formations/formations.js",
     "songs_dev": "node app/songs/songs.js"
   },
-  "keywords": ["choreography", "dance"],
+  "keywords": [
+    "choreography",
+    "dance"
+  ],
   "license": "ISC",
   "dependencies": {
     "dotenv": "^16.0.3",
-    "openai": "^3.2.1"
+    "openai": "^3.2.1",
+    "prompt-sync": "^4.2.0"
   }
 }
