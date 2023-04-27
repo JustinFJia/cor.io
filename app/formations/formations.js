@@ -33,6 +33,7 @@ let formtran
 // Function that queries GPT for potential starting formations given a song
 async function getStart() {
     let userSongArtist
+    let apiQueryContent
     ui.question('What is the song and artist (ex: "Motley Crew" by Post Malone)?', async function(userResponse) {
         userSongArtist = userResponse
     })
