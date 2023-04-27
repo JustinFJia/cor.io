@@ -32,12 +32,17 @@ let formtran
 
 // Function that queries GPT for potential starting formations given a song
 async function getStart() {
+    let userSongArtist
+    ui.question('What is the song and artist (ex: "Motley Crew" by Post Malone)?', async function(userResponse) {
+        userSongArtist = userResponse
+    })
+    apiQueryContent = 'Given the song ' + userSongArtist + ', generate a set of 5 potential starting formations for a dance piece that uses that song.'
     // OpenAI ChatCompletion API query with parameters
     const startFormationsReponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [{
             'role': 'user',
-            'content': 'Given the song "Motley Crew" by Post Malone, generate a set of 5 potential starting formations for a dance piece that uses that song.'
+            'content': apiQueryContent
         }],
         temperature: 0.5
     })
