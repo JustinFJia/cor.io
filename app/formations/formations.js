@@ -46,57 +46,57 @@ async function getStart() {
     // Report the model's response; can probably get rid of this once everything is hooked up together
     console.log(startFormations);
 
-    // getFormTran(startFormations);
+    getFormTran(startFormations);
 }
 
 // Function that queries GPT for more formations & transitions between formations given starting formation & song
 async function getFormTran(formations) {
-    let msgContent;
-    const indexOfStart = 0;
-    const indexOfEnd = 0;
-    const chosenFormation = "";
-    let userStartForm = prompt('Which of the starting formations would you like to proceed with?')
+    var msgContent;
+    var indexOfStart = 0;
+    var indexOfEnd = 0;
+    var chosenFormation = "";
+    let userStartForm = prompt('Which of the starting formations would you like to proceed with?');
     // perhaps we should limit the user's input options so we don't need to clean the user input here
     // could give them the option of 1 to 5 or R where R is the option to requery GPT for more starting formation options
     switch (userStartForm) {
-        case 1:
-            /*indexOfStart = 3;
+        case '1':
+            indexOfStart = 3;
             indexOfEnd = formations.indexOf("2.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
             msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
-            console.log(msgContent);*/
+            console.log(msgContent);
             break
-        case 2:
-            /*indexOfStart = formations.indexOf("2.") + 3;
+        case '2':
+            indexOfStart = formations.indexOf("2.") + 3;
             indexOfEnd = formations.indexOf("3.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
             msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
-            console.log(msgContent);*/
+            console.log(msgContent);
             break
-        case 3:
-            /*indexOfStart = formations.indexOf("3.") + 3;
+        case '3':
+            indexOfStart = formations.indexOf("3.") + 3;
             indexOfEnd = formations.indexOf("4.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
             msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
-            console.log(msgContent);*/
+            console.log(msgContent);
             break
-        case 4:
-            /*indexOfStart = formations.indexOf("4.") + 3;
+        case '4':
+            indexOfStart = formations.indexOf("4.") + 3;
             indexOfEnd = formations.indexOf("5.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
             msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
-            console.log(msgContent);*/
+            console.log(msgContent);
             break
-        case 5:
-            /*indexOfStart = formations.indexOf("4.") + 3;
+        case '5':
+            indexOfStart = formations.indexOf("4.") + 3;
             chosenFormation = formations.substring(indexOfStart);
             console.log(chosenFormation);
             msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 4 formations with transitions between them.';
-            console.log(msgContent);*/
+            console.log(msgContent);
             break
         case 'R':
             // user wants to requery GPT
