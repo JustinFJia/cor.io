@@ -24,49 +24,79 @@ const prompt = PromptSync();
 // Global variable(s):
 //     startFormations - string that GPT generated that represents the list of potential starting formations to give to the user
 //     formtran - string that GPT generated that represents the complete list of formations and transitions to give to the user
-let startFormations
-let formtran
+let startFormations;
+let formtran;
 
 // Function that queries GPT for potential starting formations given a song
 async function getStart() {
-    let userSongArtist = prompt('What is the song and artist (ex: "Motley Crew" by Post Malone)? ')
-    let apiQueryContent = 'Given the song ' + userSongArtist + ', generate a set of 5 potential starting formations for a dance piece that uses that song.'
+    let userSongArtist = prompt('What is the song and artist (ex: "Motley Crew" by Post Malone)? ');
+    let userVibes = prompt('What are the vibes of the piece you envision?');
+    let apiQueryContent = 'Given the song ' + userSongArtist + ', generate a set of 5 potential starting formations for a '+userVibes+' dance piece that uses that song.'
     // OpenAI ChatCompletion API query with parameters
-    const startFormationsReponse = await openai.createChatCompletion({
+    const startFormationsResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
         messages: [{
             'role': 'user',
             'content': apiQueryContent
         }],
-        temperature: 0.5
-    })
+        temperature: 0.25
+    });
     // Parse API's HTTP response for actual textual response
-    startFormations = startFormationsReponse.data.choices[0].message.content
+    startFormations = startFormationsResponse.data.choices[0].message.content;
     // Report the model's response; can probably get rid of this once everything is hooked up together
-    console.log(startFormations)
+    console.log(startFormations);
+
+    // getFormTran(startFormations);
 }
 
 // Function that queries GPT for more formations & transitions between formations given starting formation & song
-async function getFormTran() {
+async function getFormTran(formations) {
+    let msgContent;
+    const indexOfStart = 0;
+    const indexOfEnd = 0;
+    const chosenFormation = "";
     let userStartForm = prompt('Which of the starting formations would you like to proceed with?')
-    let msgContent
     // perhaps we should limit the user's input options so we don't need to clean the user input here
     // could give them the option of 1 to 5 or R where R is the option to requery GPT for more starting formation options
     switch (userStartForm) {
         case 1:
-            //msgContent = 
+            /*indexOfStart = 3;
+            indexOfEnd = formations.indexOf("2.");
+            chosenFormation = formations.substring(indexOfStart, indexOfEnd);
+            console.log(chosenFormation);
+            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            console.log(msgContent);*/
             break
         case 2:
-            //msgContent = 
+            /*indexOfStart = formations.indexOf("2.") + 3;
+            indexOfEnd = formations.indexOf("3.");
+            chosenFormation = formations.substring(indexOfStart, indexOfEnd);
+            console.log(chosenFormation);
+            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            console.log(msgContent);*/
             break
         case 3:
-            //msgContent = 
+            /*indexOfStart = formations.indexOf("3.") + 3;
+            indexOfEnd = formations.indexOf("4.");
+            chosenFormation = formations.substring(indexOfStart, indexOfEnd);
+            console.log(chosenFormation);
+            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            console.log(msgContent);*/
             break
         case 4:
-            //msgContent = 
+            /*indexOfStart = formations.indexOf("4.") + 3;
+            indexOfEnd = formations.indexOf("5.");
+            chosenFormation = formations.substring(indexOfStart, indexOfEnd);
+            console.log(chosenFormation);
+            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            console.log(msgContent);*/
             break
         case 5:
-            //msgContent = 
+            /*indexOfStart = formations.indexOf("4.") + 3;
+            chosenFormation = formations.substring(indexOfStart);
+            console.log(chosenFormation);
+            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 4 formations with transitions between them.';
+            console.log(msgContent);*/
             break
         case 'R':
             // user wants to requery GPT
@@ -83,12 +113,12 @@ async function getFormTran() {
             'role': 'user',
             'content': msgContent
         }],
-        temperature: 0.5
-    })
+        temperature: 0.25
+    });
     // Parse API's HTTP response for actual textual response
-    formtran = formtranResponse.data.choices[0].message.content
+    formtran = formtranResponse.data.choices[0].message.content;
     // Report the model's response; can probably get rid of this once everything is hooked up together
-    console.log(formtran)
+    console.log(formtran);
 }
 
 // Calls function that gets start formations; can definitely get rid of this once everything is hooked up together as this file will just be an import to expose functions defined here
