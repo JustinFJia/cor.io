@@ -10,8 +10,8 @@ const format =
 export async function getStart(openai, song, vibes, feedback) {
     const qContent = 'Given the song ' + song + ', generate a set of 5 potential starting formations for a ' +
     vibes + ' dance piece that uses that song, and write it in the following format ' + format +
-    ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation.' +
-    feedback
+    ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points \
+    describing the formation.' + feedback
 
     const stFms = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
@@ -26,6 +26,7 @@ export async function getStart(openai, song, vibes, feedback) {
 
 // Breaks full list of starting formations into components
 export function parseStart(stFms) {
+    console.log(stFms)
     const stOne = stFms.substring(3, stFms.indexOf("2."))
     const stTwo = stFms.substring(stFms.indexOf("2.") + 3, stFms.indexOf("3."))
     const stThree = stFms.substring(stFms.indexOf("3.") + 3, stFms.indexOf("4."))
