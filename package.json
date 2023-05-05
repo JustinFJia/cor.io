@@ -5,8 +5,7 @@
   "type": "module",
   "main": "app/main.js",
   "scripts": {
-    "dev": "node app/main.js",
-    "songs_dev": "node app/songs/songs.js"
+    "dev": "node app/main.js"
   },
   "keywords": [
     "choreography",
