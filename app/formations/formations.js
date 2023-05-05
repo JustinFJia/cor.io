@@ -28,15 +28,18 @@ let startFormations;
 let formtran;
 
 const format = 
-`"Formation X: Y
+`"X. Formation: Y
 - W
 - Z"`;
 
+var userSongArtist;
+var userVibes;
+
 // Function that queries GPT for potential starting formations given a song
 async function getStart() {
-    let userSongArtist = prompt('What is the song and artist (ex: "Motley Crew" by Post Malone)? ');
-    let userVibes = prompt('What are the vibes of the piece you envision? ');
-    let apiQueryContent = 'Given the song ' + userSongArtist + ', generate a set of 5 potential starting formations for a '+userVibes+' dance piece that uses that song, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are each one sentence describing the formation.';
+    userSongArtist = prompt('What is the song and artist (ex: "Motley Crew" by Post Malone)? ');
+    userVibes = prompt('What are the vibes of the piece you envision? ');
+    let apiQueryContent = 'Given the song ' + userSongArtist + ', generate a set of 5 potential starting formations for a '+userVibes+' dance piece that uses that song, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation.';
     // OpenAI ChatCompletion API query with parameters
     const startFormationsResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
@@ -69,7 +72,7 @@ async function getFormTran(formations) {
             indexOfEnd = formations.indexOf("2.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
-            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            msgContent = 'Given the song ' + userSongArtist + ', the vibe ' + userVibes + ', and starting with the formation "' + chosenFormation + '", create a list of 10 formations with transitions between them, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation.';
             console.log(msgContent);
             break
         case '2':
@@ -77,7 +80,7 @@ async function getFormTran(formations) {
             indexOfEnd = formations.indexOf("3.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
-            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            msgContent = 'Given the song ' + userSongArtist + ', the vibe ' + userVibes + ', and starting with the formation "' + chosenFormation + '", create a list of 10 formations with transitions between them, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation.';
             console.log(msgContent);
             break
         case '3':
@@ -85,7 +88,7 @@ async function getFormTran(formations) {
             indexOfEnd = formations.indexOf("4.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
-            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            msgContent = 'Given the song ' + userSongArtist + ', the vibe ' + userVibes + ', and starting with the formation "' + chosenFormation + '", create a list of 10 formations with transitions between them, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation.';
             console.log(msgContent);
             break
         case '4':
@@ -93,14 +96,14 @@ async function getFormTran(formations) {
             indexOfEnd = formations.indexOf("5.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
-            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            msgContent = 'Given the song ' + userSongArtist + ', the vibe ' + userVibes + ', and starting with the formation "' + chosenFormation + '", create a list of 10 formations with transitions between them, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation.';
             console.log(msgContent);
             break
         case '5':
-            indexOfStart = formations.indexOf("4.") + 3;
+            indexOfStart = formations.indexOf("5.") + 3;
             chosenFormation = formations.substring(indexOfStart);
             console.log(chosenFormation);
-            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
+            msgContent = 'Given the song ' + userSongArtist + ', the vibe ' + userVibes + ', and starting with the formation "' + chosenFormation + '", create a list of 10 formations with transitions between them, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation.';
             console.log(msgContent);
             break
         case 'R':
@@ -125,6 +128,7 @@ async function getFormTran(formations) {
     // Report the model's response; can probably get rid of this once everything is hooked up together
     console.log(formtran);
 }
+
 
 // Calls function that gets start formations; can definitely get rid of this once everything is hooked up together as this file will just be an import to expose functions defined here
 getStart()
