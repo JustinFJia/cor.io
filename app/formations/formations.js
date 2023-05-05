@@ -27,11 +27,16 @@ const prompt = PromptSync();
 let startFormations;
 let formtran;
 
+const format = 
+`"Formation X: Y
+- W
+- Z"`;
+
 // Function that queries GPT for potential starting formations given a song
 async function getStart() {
     let userSongArtist = prompt('What is the song and artist (ex: "Motley Crew" by Post Malone)? ');
-    let userVibes = prompt('What are the vibes of the piece you envision?');
-    let apiQueryContent = 'Given the song ' + userSongArtist + ', generate a set of 5 potential starting formations for a '+userVibes+' dance piece that uses that song.'
+    let userVibes = prompt('What are the vibes of the piece you envision? ');
+    let apiQueryContent = 'Given the song ' + userSongArtist + ', generate a set of 5 potential starting formations for a '+userVibes+' dance piece that uses that song, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are each one sentence describing the formation.';
     // OpenAI ChatCompletion API query with parameters
     const startFormationsResponse = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
@@ -95,7 +100,7 @@ async function getFormTran(formations) {
             indexOfStart = formations.indexOf("4.") + 3;
             chosenFormation = formations.substring(indexOfStart);
             console.log(chosenFormation);
-            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 4 formations with transitions between them.';
+            msgContent = 'Given the starting formation "' + chosenFormation + '", generate the remaining list of 9 formations with transitions between them.';
             console.log(msgContent);
             break
         case 'R':
