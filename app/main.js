@@ -1,6 +1,6 @@
 // main.js
 
-import { getSongs } from "./songs/songs.js"
+import { getSongs, parseSongs } from "./songs/songs.js"
 import { getStart, parseStart, getFull } from "./formations/formations.js"
 import { getCostumes } from "./costumes/costumes.js"
 import { config } from "dotenv"
@@ -25,16 +25,20 @@ async function main() {
     const vibes = prompt('What are the vibes of the piece you envision (ex: groovy)? ')
     let songs = await getSongs(openai, vibes, "")
     do {
+        let [songOne, songTwo, songThree] = parseSongs(songs)
         console.log(songs)
         const userSong = prompt("Which of the songs would you like to proceed with (give a number 1-3, 'R' for a simple requery, or some feedback for a more advanced requery)? ")
         switch (userSong) {
             case '1':
+                song = songOne
                 sND = false
                 break
             case '2':
+                song = songTwo
                 sND = false
                 break
             case '3':
+                song = songThree
                 sND = false
                 break
             case 'R':
