@@ -1,32 +1,16 @@
-import {config} from "dotenv"
-config()
+// songs.js
 
-import {Configuration, OpenAIApi} from "openai"
-import readline from "readline"
+// Gets potential songs
+export async function getSongs(openai, vibes, feedback) {
+    const qContent = 'Give me a list of 3 songs that are ' + vibes + '. Keep in mind that these songs should be songs that I can choreograph a dance to. ' + feedback
 
-const openai = new OpenAIApi (new Configuration({
-    apiKey: process.env.API_KEY
-}))
-
-const userInterface = readline.createInterface({
-    input: process.stdin,
-    output: process.stdout
-})
-
-userInterface.prompt()
-userInterface.on("line", async input => {
-    const res = await openai.createChatCompletion({
+    const songs = await openai.createChatCompletion({
         model: "gpt-3.5-turbo",
-        // array of all the messages you want to send
-        messages: [{role:"user", content: input}]
+        messages: [{
+            'role': 'user',
+            'content': qContent
+        }],
+        temperature: 0.25
     })
-    console.log(res.data.choices[0].message.content)
-    userInterface.prompt()
-    // .then(res => {
-    //     console.log(res.data.choices[0].message.content)
-    // })
-
-})
-
-
-
+    return songs.data.choices[0].message.content
+}
