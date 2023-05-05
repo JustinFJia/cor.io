@@ -30,6 +30,14 @@ let formtran;
 const format = 
 `"X. Formation: Y
 - W
+- Z
+"`;
+
+const formatRest = 
+`"T
+
+X. Formation: Y
+- W
 - Z"`;
 
 var userSongArtist;
@@ -72,7 +80,7 @@ async function getFormTran(formations) {
             indexOfEnd = formations.indexOf("2.");
             chosenFormation = formations.substring(indexOfStart, indexOfEnd);
             console.log(chosenFormation);
-            msgContent = 'Given the song ' + userSongArtist + ', the vibe ' + userVibes + ', and starting with the formation "' + chosenFormation + '", create a list of 10 formations with transitions between them, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation.';
+            msgContent = 'Given the song ' + userSongArtist + ', the vibe ' + userVibes + ', and starting with the formation "' + chosenFormation + '", create a list of 10 formations with transitions between them, and write it in the following format ' + format + ' where X is the number of the formation, Y is the shape of the formation, and W and Z are bullet points describing the formation. Then add a transition sentence in between each formation to describe how dancers get from one formation to the next.';
             console.log(msgContent);
             break
         case '2':
