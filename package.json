@@ -1,12 +1,11 @@
 {
   "name": "cor.io",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Web-based choreography tool to simplify song and formation selection",
   "type": "module",
   "main": "app/main.js",
   "scripts": {
-    "dev": "node app/main.js",
-    "songs_dev": "node app/songs/songs.js"
+    "dev": "node app/main.js"
   },
   "keywords": [
     "choreography",
