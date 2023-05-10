@@ -1,7 +1,6 @@
 // songs.js
 
-const format = 
-`X. "S" by A`
+const format = `X. "S" by A`
 
 // Gets potential songs
 export async function getSongs(openai, vibes, feedback) {

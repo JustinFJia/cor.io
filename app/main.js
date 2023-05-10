@@ -42,10 +42,10 @@ async function main() {
                 sND = false
                 break
             case 'R':
-                songs = await getSongs(openai, vibes, "")
+                songs = await getSongs(openai, vibes, "Don't give me the following songs: " + songOne + ", " + songTwo + ", or " + songThree + ".")
                 break
             default:
-                const sFeedback = "Take into account the following feedback from a previous query: " + userSong + "."
+                const sFeedback = "Don't give me the following songs: " + songOne + ", " + songTwo + ", or " + songThree + ". Additionally, take into account the following feedback from a previous query: " + userSong + "."
                 songs = await getSongs(openai, vibes, sFeedback)
         }
     } while(sND)
@@ -85,17 +85,32 @@ async function main() {
                 fND = false
                 break
             case 'R':
-                stFms = await getStart(openai, song, vibes, "")
+                stFms = await getStart(openai, song, vibes, "Don't give me the following formations: " + stOne + ", " + stTwo + ", " + stThree + ", " + stFour + ", or " + stFive + ".")
                 break
             default:
-                const fFeedback = "Take into account the following feedback from a previous query: " + userStart + "."
+                const fFeedback = "Don't give me the following formations: " + stOne + ", " + stTwo + ", " + stThree + ", " + stFour + ", or " + stFive + ". Additionally, take into account the following feedback from a previous query: " + userStart + "."
                 stFms = await getStart(openai, song, vibes, fFeedback)
         }
     } while (fND)
 
     // Costumes
-    let costumes = await getCostumes(openai, song)
-    console.log(costumes)
+    let cND = true
+    let costumes = await getCostumes(openai, song, "")
+    do {
+        console.log(costumes)
+        const userCostume = prompt("Would you like to see a different costume scheme ('N' to finish, 'R' for a simple requery, or some feedback for a more advanced requery)? ")
+        switch (userCostume) {
+            case 'N':
+                cND = false
+                break
+            case 'R':
+                costumes = await getCostumes(openai, song, "Don't give me the following costume scheme: " + costumes + ".")
+                break
+            default:
+                const cFeedback = "Don't give me the following costume scheme: " + costumes + ". Additionally, take into account the following feedback from a previous query: " + userCostume + "."
+                costumes = await getCostumes(openai, song, cFeedback)
+        }
+    } while (cND)
 }
 
 main()
