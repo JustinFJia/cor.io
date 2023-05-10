@@ -4,6 +4,7 @@ cor&#46;io is a web-based choreographing tool that simplifies the song and forma
 
 ## Directory Structure
 - **app/** - holds core functionality of cor&#46;io
+  - **costumes/** - holds costumes suggestion functionality
   - **formations/** - holds formations suggestion functionality
   - **songs/** - holds songs suggestion functionality
 - **static/** - holds static web components of cor&#46;io
