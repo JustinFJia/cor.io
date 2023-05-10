@@ -52,6 +52,7 @@ async function main() {
 
     // Formations
     let fND = true
+    let lND
     let full
     let stFms = await getStart(openai, song, vibes, "")
     do {
@@ -60,28 +61,103 @@ async function main() {
         const userStart = prompt("Which of the starting formations would you like to proceed with (give a number 1-5, 'R' for a simple requery, or some feedback for a more advanced requery)? ")
         switch (userStart) {
             case '1':
-                full = await getFull(openai, song, vibes, stOne)
-                console.log(full)
+                lND = true
+                full = await getFull(openai, song, vibes, stOne, "")
+                do {
+                    console.log(full)
+                    const userFull = prompt("Would you like to see a different list of formations and transitions ('N' to finish, 'R' for a simple requery, or some feedback for a more advanced requery)? ")
+                    switch (userFull) {
+                        case 'N':
+                            lND = false
+                            break
+                        case 'R':
+                            full = await getFull(openai, song, vibes, stOne, "Don't give me the following list: " + full + ".")
+                            break
+                        default:
+                            const lFeedback = "Don't give me the following list: " + full + ". Additionally, take into account the following feedback from a previous query: " + userFull + "."
+                            full = await getFull(openai, song, vibes, stOne, lFeedback)
+                    }
+                } while (lND)
                 fND = false
                 break
             case '2':
-                full = await getFull(openai, song, vibes, stTwo)
-                console.log(full)
+                lND = true
+                full = await getFull(openai, song, vibes, stTwo, "")
+                do {
+                    console.log(full)
+                    const userFull = prompt("Would you like to see a different list of formations and transitions ('N' to finish, 'R' for a simple requery, or some feedback for a more advanced requery)? ")
+                    switch (userFull) {
+                        case 'N':
+                            lND = false
+                            break
+                        case 'R':
+                            full = await getFull(openai, song, vibes, stTwo, "Don't give me the following list: " + full + ".")
+                            break
+                        default:
+                            const lFeedback = "Don't give me the following list: " + full + ". Additionally, take into account the following feedback from a previous query: " + userFull + "."
+                            full = await getFull(openai, song, vibes, stTwo, lFeedback)
+                    }
+                } while (lND)
                 fND = false
                 break
             case '3':
-                full = await getFull(openai, song, vibes, stThree)
-                console.log(full)
+                lND = true
+                full = await getFull(openai, song, vibes, stThree, "")
+                do {
+                    console.log(full)
+                    const userFull = prompt("Would you like to see a different list of formations and transitions ('N' to finish, 'R' for a simple requery, or some feedback for a more advanced requery)? ")
+                    switch (userFull) {
+                        case 'N':
+                            lND = false
+                            break
+                        case 'R':
+                            full = await getFull(openai, song, vibes, stThree, "Don't give me the following list: " + full + ".")
+                            break
+                        default:
+                            const lFeedback = "Don't give me the following list: " + full + ". Additionally, take into account the following feedback from a previous query: " + userFull + "."
+                            full = await getFull(openai, song, vibes, stThree, lFeedback)
+                    }
+                } while (lND)
                 fND = false
                 break
             case '4':
-                full = await getFull(openai, song, vibes, stFour)
-                console.log(full)
+                lND = true
+                full = await getFull(openai, song, vibes, stFour, "")
+                do {
+                    console.log(full)
+                    const userFull = prompt("Would you like to see a different list of formations and transitions ('N' to finish, 'R' for a simple requery, or some feedback for a more advanced requery)? ")
+                    switch (userFull) {
+                        case 'N':
+                            lND = false
+                            break
+                        case 'R':
+                            full = await getFull(openai, song, vibes, stFour, "Don't give me the following list: " + full + ".")
+                            break
+                        default:
+                            const lFeedback = "Don't give me the following list: " + full + ". Additionally, take into account the following feedback from a previous query: " + userFull + "."
+                            full = await getFull(openai, song, vibes, stFour, lFeedback)
+                    }
+                } while (lND)
                 fND = false
                 break
             case '5':
-                full = await getFull(openai, song, vibes, stFive)
-                console.log(full)
+                lND = true
+                full = await getFull(openai, song, vibes, stFive, "")
+                do {
+                    console.log(full)
+                    const userFull = prompt("Would you like to see a different list of formations and transitions ('N' to finish, 'R' for a simple requery, or some feedback for a more advanced requery)? ")
+                    switch (userFull) {
+                        case 'N':
+                            lND = false
+                            break
+                        case 'R':
+                            full = await getFull(openai, song, vibes, stFive, "Don't give me the following list: " + full + ".")
+                            break
+                        default:
+                            const lFeedback = "Don't give me the following list: " + full + ". Additionally, take into account the following feedback from a previous query: " + userFull + "."
+                            full = await getFull(openai, song, vibes, stFive, lFeedback)
+                    }
+                } while (lND)
                 fND = false
                 break
             case 'R':
