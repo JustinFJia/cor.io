@@ -6,6 +6,7 @@ import { getCostumes } from "./costumes/costumes.js"
 import { config } from "dotenv"
 import { Configuration, OpenAIApi } from "openai"
 import PromptSync from "prompt-sync"
+import { writeFile } from "fs"
 
 config()
 const configuration = new Configuration({
@@ -18,6 +19,21 @@ if (!configuration.apiKey) {
 const prompt = PromptSync()
 
 async function main() {
+
+    // Visualization
+    let vis = await openai.createImage({
+        prompt: "Aerial view of a dance formation in the shape of a square",
+        n: 1,
+        size: "1024x1024",
+        response_format: "b64_json"
+    })
+    await writeFile('./img.txt', vis.data.data[0].b64_json, (err) => {
+        if (err) {
+            console.log("didn't work :/")
+        } else {
+            console.log("worked :)")
+        }
+    })
 
     // Songs
     let sND = true
@@ -187,6 +203,7 @@ async function main() {
                 costumes = await getCostumes(openai, song, cFeedback)
         }
     } while (cND)
+
 }
 
 main()
