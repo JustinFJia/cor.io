@@ -14,11 +14,11 @@ export async function getSongs(openai, vibes, feedback) {
         }],
         temperature: 0.25
     })
-    return songs.data.choices[0].message.content
+    return parseSongs(songs.data.choices[0].message.content)
 }
 
 // Breaks list of songs into components
-export function parseSongs(songs) {
+function parseSongs(songs) {
     const songOne = songs.substring(3, songs.indexOf("2."))
     const songTwo = songs.substring(songs.indexOf("2.") + 3, songs.indexOf("3."))
     const songThree = songs.substring(songs.indexOf("3.") + 3)
