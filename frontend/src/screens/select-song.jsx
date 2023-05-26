@@ -53,7 +53,7 @@ const SelectSong = ({ updateCentralInfo }) => {
     }
 
     const togglePopupDisplay = () => {
-        var modal = document.getElementsByClassName('requeryPopupBox')[0];
+        const modal = document.getElementsByClassName('requeryPopupBox')[0];
         if (modal.style.display == 'flex') {
             modal.style.display = 'none';
         } else {

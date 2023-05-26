@@ -181,11 +181,11 @@ input {
     transition: 0.4s ease;
 }
 
-.selectSongBox, .selectStartFormationBox {
+.selectSongBox, .selectStartFormationBox, .selectMoreFormationBox {
     background: linear-gradient(180deg, #0C4FB1 0%, #A0BAE1 60.94%, #FFFFFF 100%);
 }
 
-.selectSongContent, .selectStartFormationContent {
+.selectSongContent, .selectStartFormationContent, .selectMoreFormationContent {
     height: 90vh;
     width: 100vw;
     display: flex;
@@ -312,9 +312,6 @@ input {
     padding: 20px;
     top: 0;
     right: 0;
-
-    
-    
 }
 
 .closePopupContainer:hover {
@@ -358,11 +355,6 @@ input {
     transition: 0.4s ease;
 }
 
-.selectStartFormationBox {
-    height: 90vh;
-    width: 100vw;
-}
-
 .formationCardsContainer {
     display: flex;
     justify-content: space-around;
@@ -370,14 +362,11 @@ input {
     gap: 5vw;
 }
 
-
-
 .infoToolTip{
     position: relative;
     top: -50px;
     right: -110px;
 }
-
 
 .formationCard {
     color: #0C4FB1;
@@ -394,11 +383,29 @@ input {
     filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
 
-
-
 .formationCard:hover {
     color: white;
     background-color: #0C4FB1;
     transition: 0.4s ease;
-      
+}
+
+.finalFormationCard {
+    color: #0C4FB1;
+    background-color: white;
+    width: 15vw;
+    height: 28vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border-radius: 30px;
+    padding: 30px;
+    filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+
+.finalFormationCard:hover {
+    color: white;
+    background-color: #0C4FB1;
+    transition: 0.4s ease;
 }

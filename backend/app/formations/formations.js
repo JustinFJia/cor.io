@@ -23,7 +23,7 @@ export async function getStart(openai, song, vibes, feedback) {
 
 // Breaks full list of starting formations into components
 function parseStart(stFms) {
-    const stOne = stFms.substring(3, stFms.indexOf("2."))
+    const stOne = stFms.substring(stFms.indexOf("F"), stFms.indexOf("2."))
     const stTwo = stFms.substring(stFms.indexOf("2.") + 3, stFms.indexOf("3."))
     const stThree = stFms.substring(stFms.indexOf("3.") + 3, stFms.indexOf("4."))
     const stFour = stFms.substring(stFms.indexOf("4.") + 3, stFms.indexOf("5."))
@@ -48,7 +48,7 @@ export async function getFull(openai, song, vibes, st, feedback) {
 
 // Breaks full list of formations into components
 function parseFull(fullFms) {
-    const fullOne = fullFms.substring(3, fullFms.indexOf("2."))
+    const fullOne = fullFms.substring(fullFms.indexOf("F"), fullFms.indexOf("2."))
     const fullTwo = fullFms.substring(fullFms.indexOf("2.") + 3, fullFms.indexOf("3."))
     const fullThree = fullFms.substring(fullFms.indexOf("3.") + 3, fullFms.indexOf("4."))
     const fullFour = fullFms.substring(fullFms.indexOf("4.") + 3, fullFms.indexOf("5."))
