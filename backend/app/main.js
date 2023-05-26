@@ -5,8 +5,17 @@ import { getStart, getFull, getVis } from "./formations/formations.js"
 import { getCostumes, getCostumeVis } from "./costumes/costumes.js"
 import { config } from "dotenv"
 import { Configuration, OpenAIApi } from "openai"
-import PromptSync from "prompt-sync"
+import express from "express"
+import cors from "cors"
+import bodyParser from "body-parser"
 
+// Express config
+const app = express()
+app.use(bodyParser.json())
+app.use(cors())
+const port = 8080
+
+// OpenAI API config
 config()
 const configuration = new Configuration({
     apiKey: process.env.OPENAI_API_KEY,
@@ -15,8 +24,8 @@ const openai = new OpenAIApi(configuration)
 if (!configuration.apiKey) {
     console.log('The OpenAI API key seems to be missing')
 }
-const prompt = PromptSync()
 
+// Store global state in JSON
 var data = {
     "vibes": "",
     "songList": [{"songName": "", "songArtist": ""},
@@ -42,13 +51,66 @@ var data = {
     "costumes": {"costumeSchema": "", "visualization": ""}
 }
 
+// Handle POST request for vibes
+app.post('/vibes', async (req, res) => {
+    const vibes = req.body.vibes
+    try {
+        if (vibes == null) {
+            console.log("Didn't get a vibe")
+        }
+        data.vibes = vibes
+        let songs = await getSongs(openai, vibes, "")
+        data.songList[0].songName = songs[0].substring(0, songs[0].indexOf('by') - 1)
+        data.songList[0].songArtist = songs[0].substring(songs[0].indexOf('by') + 3)
+        data.songList[1].songName = songs[1].substring(0, songs[1].indexOf('by') - 1)
+        data.songList[1].songArtist = songs[1].substring(songs[1].indexOf('by') + 3)
+        data.songList[2].songName = songs[2].substring(0, songs[2].indexOf('by') - 1)
+        data.songList[2].songArtist = songs[2].substring(songs[2].indexOf('by') + 3)
+        return res.status(200).json({
+            success: true,
+            content: {"vibes": data.vibes, "songList": data.songList},
+        })
+    } catch(err) {
+        console.log(err)
+    }
+})
+
+// Handle POST request for song requery
+app.post('/songsrequery', async (req, res) => {
+    let feedback = req.body.feedback
+    if (feedback == null || feedback == '') {
+        feedback = "Don't give me the following songs: " + data.songList[0].songName + " by " + data.songList[0].songArtist + ", " + data.songList[1].songName + " by " + data.songList[1].songArtist + ", and " + data.songList[2].songName + " by " + data.songList[2].songArtist
+    } else {
+        feedback = "Don't give me the following songs: " + data.songList[0].songName + " by " + data.songList[0].songArtist + ", " + data.songList[1].songName + " by " + data.songList[1].songArtist + ", and " + data.songList[2].songName + " by " + data.songList[2].songArtist + ". Additionally, take into account the following feedback from a previous query: " + feedback + "."
+    }
+    try {
+        let songs = await getSongs(openai, data.vibes, feedback)
+        data.songList[0].songName = songs[0].substring(0, songs[0].indexOf('by') - 1)
+        data.songList[0].songArtist = songs[0].substring(songs[0].indexOf('by') + 3)
+        data.songList[1].songName = songs[1].substring(0, songs[1].indexOf('by') - 1)
+        data.songList[1].songArtist = songs[1].substring(songs[1].indexOf('by') + 3)
+        data.songList[2].songName = songs[2].substring(0, songs[2].indexOf('by') - 1)
+        data.songList[2].songArtist = songs[2].substring(songs[2].indexOf('by') + 3)
+        return res.status(200).json({
+            success: true,
+            content: {"vibes": data.vibes, "songList": data.songList},
+        })
+    } catch(err) {
+        console.log(err)
+    }
+})
+
+// Listen on port 8080
+app.listen(port, () => {
+    console.log('listening on port ' + port)
+})
+
 async function main() {
 
     // Songs
     let sND = true
     let song
-    const vibes = prompt('What are the vibes of the piece you envision (ex: groovy)? ') // eventually replace this line with input from frontend
-    data.vibes = vibes
+    vibes = data.vibes
     let songs = await getSongs(openai, vibes, "")
     do { // this entire dowhile can eventually be replaced with an event that occurs whenever a button or something is pressed on the frontend, thereby triggering an update in the internal state
         data.songList[0].songName = songs[0].substring(0, songs[0].indexOf('by') - 1)
@@ -392,4 +454,4 @@ async function main() {
 
 }
 
-main()
+//main()

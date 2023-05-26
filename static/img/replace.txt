@@ -1,1 +1,0 @@
-this folder will contain the images (e.g., ico, jpg, png)
