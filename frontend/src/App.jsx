@@ -29,7 +29,7 @@ function App() {
           <Route path="/start" element={<GetSong updateCentralInfo={updateCentralInfo} />} />
           <Route path="/select-song" element={<SelectSong updateCentralInfo={updateCentralInfo} />} />
           <Route path="/select-start-formation" element={<GetStartFormation updateCentralInfo={updateCentralInfo} />} />
-          <Route path="/select-more-formations" element={<GetMoreFormations />} />
+          <Route path="/select-more-formations" element={<GetMoreFormations updateCentralInfo={updateCentralInfo} />} />
         </Routes>
       </BrowserRouter>
     </CentralInfoProvider>

@@ -16,6 +16,17 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     let data = useContext(CentralInfoContext)
     data = data[data.length - 1]
 
+    for (let i = 0; i < 5; ++i) {
+        const form = data.startFormationList[i].formation
+        const lowerForm = form.toLowerCase()
+        if (lowerForm.includes('v-shape')) {
+            const idx = lowerForm.indexOf('v-shape')
+            data.startFormationList[i].formation = form.substring(0, idx) + 'V Shape' + form.substring(idx + 7)
+        } else if (lowerForm.includes('x-shape')) {
+            const idx = lowerForm.indexOf('x-shape')
+            data.startFormationList[i].formation = form.substring(0, idx) + 'X Shape' + form.substring(idx + 7)
+        }
+    }
     const formOne = data.startFormationList[0].formation
     const formOneTitle = formOne.substring(0, formOne.indexOf('-'))
     const formOneShape = formOneTitle.substring(11)
@@ -31,7 +42,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     const formFour = data.startFormationList[3].formation
     const formFourTitle = formFour.substring(0, formFour.indexOf('-'))
     const formFourShape = formFourTitle.substring(11)
-    const formFourDetail =formFour.substring(formFour.indexOf('-'))
+    const formFourDetail = formFour.substring(formFour.indexOf('-'))
     const formFive = data.startFormationList[4].formation
     const formFiveTitle = formFive.substring(0, formFive.indexOf('-'))
     const formFiveShape = formFiveTitle.substring(11)
@@ -74,7 +85,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     }
 
     const togglePopupFormation = (i) => {
-        var modal = document.getElementsByClassName('formationPopupBox')[i];
+        const modal = document.getElementsByClassName('formationPopupBox')[i];
         if (modal.style.display == 'flex') {
             modal.style.display = 'none';
         } else {
@@ -83,7 +94,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     }
 
     const togglePopupRequery = () => {
-        var modal = document.getElementsByClassName('requeryPopupBox')[0];
+        const modal = document.getElementsByClassName('requeryPopupBox')[0];
         if (modal.style.display == 'flex') {
             modal.style.display = 'none';
         } else {

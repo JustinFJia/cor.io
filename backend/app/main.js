@@ -60,12 +60,10 @@ app.post('/vibes', async (req, res) => {
         }
         data.vibes = vibes
         const songs = await getSongs(openai, vibes, "")
-        data.songList[0].songName = songs[0].substring(0, songs[0].indexOf('by') - 1)
-        data.songList[0].songArtist = songs[0].substring(songs[0].indexOf('by') + 3)
-        data.songList[1].songName = songs[1].substring(0, songs[1].indexOf('by') - 1)
-        data.songList[1].songArtist = songs[1].substring(songs[1].indexOf('by') + 3)
-        data.songList[2].songName = songs[2].substring(0, songs[2].indexOf('by') - 1)
-        data.songList[2].songArtist = songs[2].substring(songs[2].indexOf('by') + 3)
+        for (let i = 0; i < 3; ++i) {
+            data.songList[i].songName = songs[i].substring(0, songs[i].indexOf('by') - 1)
+            data.songList[i].songArtist = songs[i].substring(songs[i].indexOf('by') + 3)
+        }
         return res.status(200).json({
             success: true,
             content: {"vibes": data.vibes, "songList": data.songList},
@@ -85,12 +83,10 @@ app.post('/songsrequery', async (req, res) => {
     }
     try {
         const songs = await getSongs(openai, data.vibes, feedback)
-        data.songList[0].songName = songs[0].substring(0, songs[0].indexOf('by') - 1)
-        data.songList[0].songArtist = songs[0].substring(songs[0].indexOf('by') + 3)
-        data.songList[1].songName = songs[1].substring(0, songs[1].indexOf('by') - 1)
-        data.songList[1].songArtist = songs[1].substring(songs[1].indexOf('by') + 3)
-        data.songList[2].songName = songs[2].substring(0, songs[2].indexOf('by') - 1)
-        data.songList[2].songArtist = songs[2].substring(songs[2].indexOf('by') + 3)
+        for (let i = 0; i < 3; ++i) {
+            data.songList[i].songName = songs[i].substring(0, songs[i].indexOf('by') - 1)
+            data.songList[i].songArtist = songs[i].substring(songs[i].indexOf('by') + 3)
+        }
         return res.status(200).json({
             success: true,
             content: {"vibes": data.vibes, "songList": data.songList},
@@ -109,16 +105,10 @@ app.post('/song', async (req, res) => {
         }
         data.songChoice = chosenSong
         const startFormations = await getStart(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, data.vibes, "")
-        data.startFormationList[0].formation = startFormations[0]
-        data.startFormationList[0].visualization = getVis(startFormations[0], 0)
-        data.startFormationList[1].formation = startFormations[1]
-        data.startFormationList[1].visualization = getVis(startFormations[1], 0)
-        data.startFormationList[2].formation = startFormations[2]
-        data.startFormationList[2].visualization = getVis(startFormations[2], 0)
-        data.startFormationList[3].formation = startFormations[3]
-        data.startFormationList[3].visualization = getVis(startFormations[3], 0)
-        data.startFormationList[4].formation = startFormations[4]
-        data.startFormationList[4].visualization = getVis(startFormations[4], 0)
+        for (let i = 0; i < 5; ++i) {
+            data.startFormationList[i].formation = startFormations[i]
+            data.startFormationList[i].visualization = getVis(startFormations[i], 0)
+        }
         return res.status(200).json({
             success: true,
             content: {"startFormationList": data.startFormationList},
@@ -138,16 +128,10 @@ app.post('/startformrequery', async (req, res) => {
     }
     try {
         const startFormations = await getStart(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, data.vibes, feedback)
-        data.startFormationList[0].formation = startFormations[0]
-        data.startFormationList[0].visualization = getVis(startFormations[0], 0)
-        data.startFormationList[1].formation = startFormations[1]
-        data.startFormationList[1].visualization = getVis(startFormations[1], 0)
-        data.startFormationList[2].formation = startFormations[2]
-        data.startFormationList[2].visualization = getVis(startFormations[2], 0)
-        data.startFormationList[3].formation = startFormations[3]
-        data.startFormationList[3].visualization = getVis(startFormations[3], 0)
-        data.startFormationList[4].formation = startFormations[4]
-        data.startFormationList[4].visualization = getVis(startFormations[4], 0)
+        for (let i = 0; i < 5; ++i) {
+            data.startFormationList[i].formation = startFormations[i]
+            data.startFormationList[i].visualization = getVis(startFormations[i], 0)
+        }
         return res.status(200).json({
             success: true,
             content: {"startFormationList": data.startFormationList}
@@ -166,36 +150,11 @@ app.post('/startform', async (req, res) => {
         }
         data.startFormationChoice = chosenStartForm
         const full = await getFull(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, data.vibes, data.startFormationChoice.formation, "")
-        data.fullFormationList[0].formation = full[0].substring(0, full[0].indexOf('Transition') - 2)
-        data.fullFormationList[0].visualization = getVis(full[0], 1)
-        data.fullFormationList[0].transition = full[0].substring(full[0].indexOf('Transition'))
-        data.fullFormationList[1].formation = full[1].substring(0, full[1].indexOf('Transition') - 2)
-        data.fullFormationList[1].visualization = getVis(full[1], 1)
-        data.fullFormationList[1].transition = full[1].substring(full[1].indexOf('Transition'))
-        data.fullFormationList[2].formation = full[2].substring(0, full[2].indexOf('Transition') - 2)
-        data.fullFormationList[2].visualization = getVis(full[2], 1)
-        data.fullFormationList[2].transition = full[2].substring(full[2].indexOf('Transition'))
-        data.fullFormationList[3].formation = full[3].substring(0, full[3].indexOf('Transition') - 2)
-        data.fullFormationList[3].visualization = getVis(full[3], 1)
-        data.fullFormationList[3].transition = full[3].substring(full[3].indexOf('Transition'))
-        data.fullFormationList[4].formation = full[4].substring(0, full[4].indexOf('Transition') - 2)
-        data.fullFormationList[4].visualization = getVis(full[4], 1)
-        data.fullFormationList[4].transition = full[4].substring(full[4].indexOf('Transition'))
-        data.fullFormationList[5].formation = full[5].substring(0, full[5].indexOf('Transition') - 2)
-        data.fullFormationList[5].visualization = getVis(full[5], 1)
-        data.fullFormationList[5].transition = full[5].substring(full[5].indexOf('Transition'))
-        data.fullFormationList[6].formation = full[6].substring(0, full[6].indexOf('Transition') - 2)
-        data.fullFormationList[6].visualization = getVis(full[6], 1)
-        data.fullFormationList[6].transition = full[6].substring(full[6].indexOf('Transition'))
-        data.fullFormationList[7].formation = full[7].substring(0, full[7].indexOf('Transition') - 2)
-        data.fullFormationList[7].visualization = getVis(full[7], 1)
-        data.fullFormationList[7].transition = full[7].substring(full[7].indexOf('Transition'))
-        data.fullFormationList[8].formation = full[8].substring(0, full[8].indexOf('Transition') - 2)
-        data.fullFormationList[8].visualization = getVis(full[8], 1)
-        data.fullFormationList[8].transition = full[8].substring(full[8].indexOf('Transition'))
-        data.fullFormationList[9].formation = full[9].substring(0, full[9].indexOf('Transition') - 2)
-        data.fullFormationList[9].visualization = getVis(full[9], 1)
-        data.fullFormationList[9].transition = full[9].substring(full[9].indexOf('Transition'))
+        for (let i = 0; i < 10; ++i) {
+            data.fullFormationList[i].formation = full[i].substring(0, full[i].indexOf('Transition') - 1)
+            data.fullFormationList[i].visualization = getVis(full[i], 1)
+            data.fullFormationList[i].transition = full[i].substring(full[i].indexOf('Transition'))
+        }
         return res.status(200).json({
             success: true,
             content: {"fullFormationList": data.fullFormationList}
@@ -215,36 +174,11 @@ app.post('/fullformrequery', async (req, res) => {
     }
     try {
         const full = await getFull(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, data.vibes, data.startFormationChoice.formation, feedback)
-        data.fullFormationList[0].formation = full[0].substring(0, full[0].indexOf('Transition') - 2)
-        data.fullFormationList[0].visualization = getVis(full[0], 1)
-        data.fullFormationList[0].transition = full[0].substring(full[0].indexOf('Transition'))
-        data.fullFormationList[1].formation = full[1].substring(0, full[1].indexOf('Transition') - 2)
-        data.fullFormationList[1].visualization = getVis(full[1], 1)
-        data.fullFormationList[1].transition = full[1].substring(full[1].indexOf('Transition'))
-        data.fullFormationList[2].formation = full[2].substring(0, full[2].indexOf('Transition') - 2)
-        data.fullFormationList[2].visualization = getVis(full[2], 1)
-        data.fullFormationList[2].transition = full[2].substring(full[2].indexOf('Transition'))
-        data.fullFormationList[3].formation = full[3].substring(0, full[3].indexOf('Transition') - 2)
-        data.fullFormationList[3].visualization = getVis(full[3], 1)
-        data.fullFormationList[3].transition = full[3].substring(full[3].indexOf('Transition'))
-        data.fullFormationList[4].formation = full[4].substring(0, full[4].indexOf('Transition') - 2)
-        data.fullFormationList[4].visualization = getVis(full[4], 1)
-        data.fullFormationList[4].transition = full[4].substring(full[4].indexOf('Transition'))
-        data.fullFormationList[5].formation = full[5].substring(0, full[5].indexOf('Transition') - 2)
-        data.fullFormationList[5].visualization = getVis(full[5], 1)
-        data.fullFormationList[5].transition = full[5].substring(full[5].indexOf('Transition'))
-        data.fullFormationList[6].formation = full[6].substring(0, full[6].indexOf('Transition') - 2)
-        data.fullFormationList[6].visualization = getVis(full[6], 1)
-        data.fullFormationList[6].transition = full[6].substring(full[6].indexOf('Transition'))
-        data.fullFormationList[7].formation = full[7].substring(0, full[7].indexOf('Transition') - 2)
-        data.fullFormationList[7].visualization = getVis(full[7], 1)
-        data.fullFormationList[7].transition = full[7].substring(full[7].indexOf('Transition'))
-        data.fullFormationList[8].formation = full[8].substring(0, full[8].indexOf('Transition') - 2)
-        data.fullFormationList[8].visualization = getVis(full[8], 1)
-        data.fullFormationList[8].transition = full[8].substring(full[8].indexOf('Transition'))
-        data.fullFormationList[9].formation = full[9].substring(0, full[9].indexOf('Transition') - 2)
-        data.fullFormationList[9].visualization = getVis(full[9], 1)
-        data.fullFormationList[9].transition = full[9].substring(full[9].indexOf('Transition'))
+        for (let i = 0; i < 10; ++i) {
+            data.fullFormationList[i].formation = full[i].substring(0, full[i].indexOf('Transition') - 1)
+            data.fullFormationList[i].visualization = getVis(full[i], 1)
+            data.fullFormationList[i].transition = full[i].substring(full[i].indexOf('Transition'))
+        }
         return res.status(200).json({
             success: true,
             content: {"fullFormationList": data.fullFormationList}
