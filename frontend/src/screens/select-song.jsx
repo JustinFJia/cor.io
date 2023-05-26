@@ -71,7 +71,7 @@ const SelectSong = ({ updateCentralInfo }) => {
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectSongContent'>
-                <p>Here are 3 songs with the vibe “{data.vibes}”. Which would you prefer?</p>
+                <p className='headerText'>Here are 3 songs with the vibe “{data.vibes}”. Which would you prefer?</p>
                 <div className='songCardsContainer'>
                     <div className='songCard' onClick={() => goToFormations(1)}>
                         <p>{data.songList[0].songName}</p>

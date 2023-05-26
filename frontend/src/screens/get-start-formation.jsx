@@ -14,7 +14,6 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     const [feedback, updateFeedback] = useState(undefined)
 
     let data = useContext(CentralInfoContext)
-    console.log(data) // delete eventually
     data = data[data.length - 1]
 
     const formOne = data.startFormationList[0].formation
@@ -125,14 +124,14 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                         <p>{formFiveShape}</p>
                     </div>
                 </div>
-                <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate songs list</button>
+                <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate formations</button>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(0)} />
                     <h1>{formOneTitle}</h1>
                     <p>{formOneDetail}</p>
-                    {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(1)}>select this formation</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -140,7 +139,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(1)} />
                     <h1>{formTwoTitle}</h1>
                     <p>{formTwoDetail}</p>
-                    {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(2)}>select this formation</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -148,7 +147,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(2)} />
                     <h1>{formThreeTitle}</h1>
                     <p>{formThreeDetail}</p>
-                    {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(3)}>select this formation</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -156,7 +155,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(3)} />
                     <h1>{formFourTitle}</h1>
                     <p>{formFourDetail}</p>
-                    {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(4)}>select this formation</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -164,7 +163,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(4)} />
                     <h1>{formFiveTitle}</h1>
                     <p>{formFiveDetail}</p>
-                    {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(5)}>select this formation</button>
                 </div>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>
