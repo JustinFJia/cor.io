@@ -17,6 +17,27 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     console.log(data) // delete eventually
     data = data[data.length - 1]
 
+    const formOne = data.startFormationList[0].formation
+    const formOneTitle = formOne.substring(0, formOne.indexOf('-'))
+    const formOneShape = formOneTitle.substring(11)
+    const formOneDetail = formOne.substring(formOne.indexOf('-'))
+    const formTwo = data.startFormationList[1].formation
+    const formTwoTitle = formTwo.substring(0, formTwo.indexOf('-'))
+    const formTwoShape = formTwoTitle.substring(11)
+    const formTwoDetail = formTwo.substring(formTwo.indexOf('-'))
+    const formThree = data.startFormationList[2].formation
+    const formThreeTitle = formThree.substring(0, formThree.indexOf('-'))
+    const formThreeShape = formThreeTitle.substring(11)
+    const formThreeDetail = formThree.substring(formThree.indexOf('-'))
+    const formFour = data.startFormationList[3].formation
+    const formFourTitle = formFour.substring(0, formFour.indexOf('-'))
+    const formFourShape = formFourTitle.substring(11)
+    const formFourDetail =formFour.substring(formFour.indexOf('-'))
+    const formFive = data.startFormationList[4].formation
+    const formFiveTitle = formFive.substring(0, formFive.indexOf('-'))
+    const formFiveShape = formFiveTitle.substring(11)
+    const formFiveDetail = formFive.substring(formFive.indexOf('-'))
+
     const skipFeedback = (e) => {
         updateFeedback('')
         requery(e, 'click')
@@ -83,25 +104,25 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                 <div className='formationCardsContainer'>
                     <div className='formationCard' id='formation-1' onClick={() => togglePopupFormation(0)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
-                        <p>Formation 1</p>
+                        <p>{formOneShape}</p>
                     </div>
                     <div className='formationCard' id='formation-2' onClick={() => togglePopupFormation(1)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
-                        <p>Formation 2</p>
+                        <p>{formTwoShape}</p>
                     </div>
                     <div className='formationCard' id='formation-3' onClick={() => togglePopupFormation(2)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
-                        <p>Formation 3</p>
+                        <p>{formThreeShape}</p>
                     </div>
                 </div>
                 <div className='formationCardsContainer'>
                     <div className='formationCard' id='formation-4' onClick={() => togglePopupFormation(3)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
-                        <p>Formation 4</p>
+                        <p>{formFourShape}</p>
                     </div>
                     <div className='formationCard' id='formation-5' onClick={() => togglePopupFormation(4)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
-                        <p>Formation 5</p>
+                        <p>{formFiveShape}</p>
                     </div>
                 </div>
                 <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate songs list</button>
@@ -109,60 +130,40 @@ const GetStartFormation = ({ updateCentralInfo }) => {
             <div className='formationPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(0)} />
-                    <h1>Formation 1</h1>
-                    <ol>
-                        <li>description 1</li>
-                        <li>description 2</li>
-                        <li>description 3</li>
-                    </ol>
+                    <h1>{formOneTitle}</h1>
+                    <p>{formOneDetail}</p>
                     {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(1)} />
-                    <h1>Formation 2</h1>
-                    <ol>
-                        <li>description 1</li>
-                        <li>description 2</li>
-                        <li>description 3</li>
-                    </ol>
+                    <h1>{formTwoTitle}</h1>
+                    <p>{formTwoDetail}</p>
                     {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(2)} />
-                    <h1>Formation 3</h1>
-                    <ol>
-                        <li>description 1</li>
-                        <li>description 2</li>
-                        <li>description 3</li>
-                    </ol>
+                    <h1>{formThreeTitle}</h1>
+                    <p>{formThreeDetail}</p>
                     {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(3)} />
-                    <h1>Formation 4</h1>
-                    <ol>
-                        <li>description 1</li>
-                        <li>description 2</li>
-                        <li>description 3</li>
-                    </ol>
+                    <h1>{formFourTitle}</h1>
+                    <p>{formFourDetail}</p>
                     {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(4)} />
-                    <h1>Formation 5</h1>
-                    <ol>
-                        <li>description 1</li>
-                        <li>description 2</li>
-                        <li>description 3</li>
-                    </ol>
+                    <h1>{formFiveTitle}</h1>
+                    <p>{formFiveDetail}</p>
                     {/* after the `select this formation` button is added here, make it call "goToFullFormations" on click */}
                 </div>
             </div>

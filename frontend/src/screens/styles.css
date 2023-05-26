@@ -252,10 +252,11 @@ input {
 }
 
 
-.requeryPopupContainer ol {
+.requeryPopupContainer p {
     margin-top: 2vh;
     margin-bottom: 2vh;
-
+    white-space: pre-line;
+    font-size: 25px;
 }
 
 .closePopupContainer {
