@@ -7,7 +7,7 @@ import { faArrowLeft, faArrowRotateRight, faXmark } from '@fortawesome/free-soli
 import { useContext } from 'react';
 import { CentralInfoContext } from '../context';
 
-const SelectSong = ({updateCentralInfo}) => {
+const SelectSong = ({ updateCentralInfo }) => {
 
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const SelectSong = ({updateCentralInfo}) => {
                 body: JSON.stringify({ feedback }),
             };
             const res = await fetch("http://localhost:8080/songsrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-song'));
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -47,7 +47,7 @@ const SelectSong = ({updateCentralInfo}) => {
                 body: JSON.stringify({ song }),
             }
             const res = await fetch("http://localhost:8080/song", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-start-formation'))
-        } catch(err) {
+        } catch (err) {
             console.log(err)
         }
     }
@@ -66,7 +66,7 @@ const SelectSong = ({updateCentralInfo}) => {
     return (
         <div className='selectSongBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/start')}/>
+                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/start')} />
                 <h1><img src={logoWhite} alt='logo'></img></h1>
                 <div className='headerSpacer'></div>
             </div>
@@ -86,21 +86,21 @@ const SelectSong = ({updateCentralInfo}) => {
                         <p>by {data.songList[2].songArtist}</p>
                     </div>
                 </div>
-                <button className='requeryButton' onClick={() => togglePopupDisplay}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='1x'/>regenerate songs list</button>
+                <button className='requeryButton' onClick={() => togglePopupDisplay()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='1x' />regenerate songs list</button>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>
-                    <div className='requeryPopupContainer'>
-                        <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupDisplay}/>
-                        <p>Great! Do you have any feedback you want to include in your requery?</p>
-                        <form className='userInput' action='./start'>
-                            <input type="text" className='userFeedback' onChange={(e) => updateFeedback(e.target.value)} onKeyDown={(e) => requery(e, 'key')}></input>
-                            <div className='requeryButtonsContainer'>
-                                <button className='skipFeedbackButton' onClick={(e) => skipFeedback(e)}>skip feedback</button>
-                                <input type="submit" value="submit feedback" className='getSongButton' onClick={(e) => requery(e, 'click')}></input>
-                            </div>
-                        </form>
-                    </div>
+                <div className='requeryPopupContainer'>
+                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupDisplay()} />
+                    <p>Great! Do you have any feedback you want to include in your requery?</p>
+                    <form className='userInput'>
+                        <input type="text" className='userFeedback' onChange={(e) => updateFeedback(e.target.value)} onKeyDown={(e) => requery(e, 'key')}></input>
+                        <div className='requeryButtonsContainer'>
+                            <button className='skipFeedbackButton' onClick={(e) => skipFeedback(e)}>skip feedback</button>
+                            <input type="submit" value="submit feedback" className='getSongButton' onClick={(e) => requery(e, 'click')}></input>
+                        </div>
+                    </form>
                 </div>
+            </div>
         </div>
     )
 }

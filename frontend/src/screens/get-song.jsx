@@ -5,7 +5,7 @@ import logoBlue from '../assets/logo-blue.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
-const GetSong = ({updateCentralInfo}) => {
+const GetSong = ({ updateCentralInfo }) => {
 
     const navigate = useNavigate();
 
@@ -23,7 +23,7 @@ const GetSong = ({updateCentralInfo}) => {
                 body: JSON.stringify({ vibes }),
             };
             const res = await fetch("http://localhost:8080/vibes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-song'));
-        } catch(err) {
+        } catch (err) {
             console.log(err);
         }
     }
@@ -31,7 +31,7 @@ const GetSong = ({updateCentralInfo}) => {
     return (
         <div className='getSongBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' onClick={() => navigate('/')}/>
+                <FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' onClick={() => navigate('/')} />
                 <h1><img src={logoBlue} alt='logo'></img></h1>
                 <div className='headerSpacer'></div>
             </div>

@@ -215,6 +215,19 @@ input {
     top: 0;
 }
 
+.formationPopupBox {
+    background-color: rgba(0, 0, 0, 0.5);
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
 .requeryPopupContainer {
     display: flex;
     position: relative;
