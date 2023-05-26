@@ -1,14 +1,20 @@
 import { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 import './styles.css';
 import logoWhite from '../assets/logo-white.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft, faArrowRotateRight, faXmark, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { useContext } from 'react';
+import { CentralInfoContext } from '../context';
 
 const GetStartFormation = () => {
 
-    const backToSongs = () => {
-        window.location.pathname = "/select-song";
-    }
+    const navigate = useNavigate()
+
+    const [feedback, updateFeedback] = useState(undefined)
+
+    let data = useContext(CentralInfoContext)
+    console.log(data)
 
     const goToFormations = () => {
 
@@ -72,7 +78,7 @@ const GetStartFormation = () => {
     return (
         <div className='selectStartFormationBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={backToSongs}/>
+                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/select-song')}/>
                 <h1><img src={logoWhite} alt='logo'></img></h1>
                 <div className='headerSpacer'></div>
             </div>

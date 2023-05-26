@@ -14,12 +14,7 @@ const SelectSong = ({updateCentralInfo}) => {
     const [feedback, updateFeedback] = useState(undefined)
 
     let data = useContext(CentralInfoContext)
-    console.log(data)
     data = data[data.length - 1]
-
-    const backToStart = () => {
-        navigate('/start')
-    }
 
     const skipFeedback = (e) => {
         updateFeedback('')
@@ -43,8 +38,18 @@ const SelectSong = ({updateCentralInfo}) => {
         }
     }
 
-    const goToFormations = () => {
-        navigate('/select-start-formation')
+    const goToFormations = async (songNum) => {
+        const song = data.songList[songNum - 1]
+        try {
+            const req = {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ song }),
+            }
+            const res = await fetch("http://localhost:8080/song", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-start-formation'))
+        } catch(err) {
+            console.log(err)
+        }
     }
 
     const togglePopupDisplay = () => {
@@ -61,31 +66,31 @@ const SelectSong = ({updateCentralInfo}) => {
     return (
         <div className='selectSongBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={backToStart}/>
+                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/start')}/>
                 <h1><img src={logoWhite} alt='logo'></img></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectSongContent'>
                 <p>Here are 3 songs with the vibe “{data.vibes}”. Which would you prefer?</p>
                 <div className='songCardsContainer'>
-                    <div className='songCard' onClick={goToFormations}>
+                    <div className='songCard' onClick={() => goToFormations(1)}>
                         <p>{data.songList[0].songName}</p>
                         <p>by {data.songList[0].songArtist}</p>
                     </div>
-                    <div className='songCard' onClick={goToFormations}>
+                    <div className='songCard' onClick={() => goToFormations(2)}>
                         <p>{data.songList[1].songName}</p>
                         <p>by {data.songList[1].songArtist}</p>
                     </div>
-                    <div className='songCard' onClick={goToFormations}>
+                    <div className='songCard' onClick={() => goToFormations(3)}>
                         <p>{data.songList[2].songName}</p>
                         <p>by {data.songList[2].songArtist}</p>
                     </div>
                 </div>
-                <button className='requeryButton' onClick={togglePopupDisplay}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='1x'/>regenerate songs list</button>
+                <button className='requeryButton' onClick={() => togglePopupDisplay}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='1x'/>regenerate songs list</button>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>
                     <div className='requeryPopupContainer'>
-                        <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={togglePopupDisplay}/>
+                        <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupDisplay}/>
                         <p>Great! Do you have any feedback you want to include in your requery?</p>
                         <form className='userInput' action='./start'>
                             <input type="text" className='userFeedback' onChange={(e) => updateFeedback(e.target.value)} onKeyDown={(e) => requery(e, 'key')}></input>
