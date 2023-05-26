@@ -122,54 +122,54 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     }
 
     return (
-        <div className='selectMoreFormationsBox'>
+        <div className='selectMoreFormationBox'>
             <div className='headerWhite'>
                 <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/select-start-formation')} />
                 <h1><img src={logoWhite} alt='logo'></img></h1>
                 <div className='headerSpacer'></div>
             </div>
-            <div className='selectMoreFormationsContent'>
+            <div className='selectMoreFormationContent'>
                 <p className='headerText'>Here are the other formations based on the starting formation you selected. Click on one for a more in-depth description.</p>
                 <div className='formationCardsContainer'>
-                    <div className='formationCard' id='formation-1' onClick={() => togglePopupFormation(0)}>
+                    <div className='finalFormationCard' id='formation-1' onClick={() => togglePopupFormation(0)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formOneShape}</p>
                     </div>
-                    <div className='formationCard' id='formation-2' onClick={() => togglePopupFormation(1)}>
+                    <div className='finalFormationCard' id='formation-2' onClick={() => togglePopupFormation(1)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formTwoShape}</p>
                     </div>
-                    <div className='formationCard' id='formation-3' onClick={() => togglePopupFormation(2)}>
+                    <div className='finalFormationCard' id='formation-3' onClick={() => togglePopupFormation(2)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formThreeShape}</p>
                     </div>
-                    <div className='formationCard' id='formation-4' onClick={() => togglePopupFormation(3)}>
+                    <div className='finalFormationCard' id='formation-4' onClick={() => togglePopupFormation(3)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formFourShape}</p>
                     </div>
-                    <div className='formationCard' id='formation-5' onClick={() => togglePopupFormation(4)}>
+                    <div className='finalFormationCard' id='formation-5' onClick={() => togglePopupFormation(4)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formFiveShape}</p>
                     </div>
                 </div>
                 <div className='formationCardsContainer'>
-                    <div className='formationCard' id='formation-6' onClick={() => togglePopupFormation(5)}>
+                    <div className='finalFormationCard' id='formation-6' onClick={() => togglePopupFormation(5)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formSixShape}</p>
                     </div>
-                    <div className='formationCard' id='formation-7' onClick={() => togglePopupFormation(6)}>
+                    <div className='finalFormationCard' id='formation-7' onClick={() => togglePopupFormation(6)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formSevenShape}</p>
                     </div>
-                    <div className='formationCard' id='formation-8' onClick={() => togglePopupFormation(7)}>
+                    <div className='finalFormationCard' id='formation-8' onClick={() => togglePopupFormation(7)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formEightShape}</p>
                     </div>
-                    <div className='formationCard' id='formation-9' onClick={() => togglePopupFormation(8)}>
+                    <div className='finalFormationCard' id='formation-9' onClick={() => togglePopupFormation(8)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formNineShape}</p>
                     </div>
-                    <div className='formationCard' id='formation-10' onClick={() => togglePopupFormation(9)}>
+                    <div className='finalFormationCard' id='formation-10' onClick={() => togglePopupFormation(9)}>
                         <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formTenShape}</p>
                     </div>
