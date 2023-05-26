@@ -17,6 +17,7 @@ const GetSong = ({ updateCentralInfo }) => {
         }
         event.preventDefault()
         try {
+            document.getElementsByClassName('getSongButton')[0].style.backgroundColor = "#276bd0";
             const req = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },

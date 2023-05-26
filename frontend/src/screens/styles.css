@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
 body * {
     box-sizing: border-box;
 }
@@ -7,8 +9,6 @@ body {
   margin: 0;
   background-color: white;
 }
-
-@import url('https://fonts.googleapis.com/css2?family=Kumbh+Sans:wght@100;200;300;400;500;600;700;800;900&family=Noto+Sans+Display:wght@700&family=Space+Mono:ital,wght@0,400;0,700;1,400;1,700&display=swap');
 
 p {
     font-family: 'Kumbh Sans', sans-serif;
@@ -32,7 +32,12 @@ input {
 .homepageBox {
     width: 100vw;
     height: 100vh;
-    background: linear-gradient(180deg, #0C4FB1 0%, #A0BAE1 60.94%, #FFFFFF 100%);
+    /* this background color exists in case the image fails */
+    /* the color is our dark solid blue so the button styling works regardless of background */
+    background-color: #0C4FB1;
+    background-image: url('../assets/background.png');
+    background-repeat: no-repeat;
+    /*background-size: cover;*/
     display: flex;
     align-items: center;
     justify-content: center;
@@ -49,8 +54,16 @@ input {
     font-size: 24px;
 }
 
+/* this is the homepage button styling for the gradient background, in case we want to revert back to it */
+/*
 .homepageContent button {
+    border: none;
+    border-radius: 30px;
+    font-size: 24px;
     margin-top: 10px;
+    font-family: 'Kumbh Sans', sans-serif;
+    height: 70px;
+    width: 220px;
     background-color: #F6F6F6;
     color: #0C6CB1;
 }
@@ -60,19 +73,43 @@ input {
     color: white;
     transition: 0.4s ease;
 }
+*/
+
+.homepageContent button {
+    border: none;
+    border-radius: 30px;
+    font-size: 24px;
+    margin-top: 10px;
+    font-family: 'Kumbh Sans', sans-serif;
+    height: 70px;
+    width: 220px;
+    background-color: transparent;
+    border: solid 1px white;
+    color: white;
+}
+
+.homepageContent button:hover, .homepageContent button:active, .homepageContent button:focus {
+    background-color: white;
+    color: #ED548F;
+    border: 1px solid white;
+    transition: 0.4s ease;
+}
 
 .headerWhite {
     width: 100vw;
-    /*border: solid 1px red;*/
     display: flex;
     align-items: center;
     height: 10vh;
     justify-content: space-between;
-    padding: 20px;    
+    padding: 10px 20px;    
 }
 
-.headerWhite h1{
-    margin-top: 4.5vh;
+.headerWhite img, .headerWhite h1 {
+    height: 100%;
+}
+
+.headerWhite img {
+    margin-right: 42px;
 }
 
 .backButtonBlue {
@@ -115,7 +152,6 @@ input {
     height: 50px;
     width: 60vw;
     border-radius: 25px;
-    /*border: solid 1px #276bd0;*/
     border: none;
     padding: 0px 20px;
     font-size: 20px;
@@ -124,6 +160,10 @@ input {
 
 .userInput {
     gap: 20px;
+}
+
+.userVibes {
+    color: black;
 }
 
 .userVibes:focus, .userFeedback:focus {
@@ -136,7 +176,7 @@ input {
     color: white;
 }
 
-.getSongButton:hover {
+.getSongButton:hover, .getSongButton:active, .getSongButton:focus {
     background-color: #276bd0;
     transition: 0.4s ease;
 }
