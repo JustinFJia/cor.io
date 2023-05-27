@@ -33,7 +33,7 @@ const GetCostume = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ feedback }),
             }
-            const res = await fetch("http://localhost:8080/costumesrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-costume'))
+            const res = await fetch("http://localhost:8080/costumesrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/costumes'))
         } catch(err) {
             console.log(err)
         }
@@ -51,7 +51,7 @@ const GetCostume = ({ updateCentralInfo }) => {
     return (
         <div className='getCostumeBox'>
             <div className='headerWhite'>
-                <Link to='/select-more-formations'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <Link to='/full-formations'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>

@@ -65,7 +65,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ feedback }),
             }
-            const res = await fetch("http://localhost:8080/startformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-start-formation'))
+            const res = await fetch("http://localhost:8080/startformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/start-formations'))
         } catch (err) {
             console.log(err)
         }
@@ -79,7 +79,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ form }),
             }
-            const res = await fetch("http://localhost:8080/startform", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-more-formations'))
+            const res = await fetch("http://localhost:8080/fullform", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/full-formations'))
         } catch (err) {
             console.log(err)
         }
@@ -106,7 +106,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     return (
         <div className='selectStartFormationBox'>
             <div className='headerWhite'>
-                <Link to='/select-song'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <Link to='/songs'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>

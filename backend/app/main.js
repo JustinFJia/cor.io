@@ -52,7 +52,7 @@ var data = {
 }
 
 // Handle POST request for vibes
-app.post('/vibes', async (req, res) => {
+app.post('/songs', async (req, res) => {
     const vibes = req.body.vibes
     try {
         if (vibes == null) {
@@ -97,7 +97,7 @@ app.post('/songsrequery', async (req, res) => {
 })
 
 // Handle POST request for song selection/starting formation generation
-app.post('/song', async (req, res) => {
+app.post('/startform', async (req, res) => {
     const chosenSong = req.body.song
     try {
         if (chosenSong == null) {
@@ -142,7 +142,7 @@ app.post('/startformrequery', async (req, res) => {
 })
 
 // Handle POST request for starting formation selection/full formation generation
-app.post('/startform', async (req, res) => {
+app.post('/fullform', async (req, res) => {
     const chosenStartForm = req.body.form
     try {
         if (chosenStartForm == null) {

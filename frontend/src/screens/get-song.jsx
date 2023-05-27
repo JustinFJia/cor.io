@@ -24,7 +24,7 @@ const GetSong = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ vibes }),
             };
-            const res = await fetch("http://localhost:8080/vibes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-song'));
+            const res = await fetch("http://localhost:8080/songs", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/songs'));
         } catch (err) {
             console.log(err);
         }

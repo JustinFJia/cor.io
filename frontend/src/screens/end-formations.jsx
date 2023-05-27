@@ -85,7 +85,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ feedback }),
             }
-            const res = await fetch("http://localhost:8080/fullformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-more-formations'))
+            const res = await fetch("http://localhost:8080/fullformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/full-formations'))
         } catch (err) {
             console.log(err)
         }
@@ -97,7 +97,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             }
-            const res = await fetch("http://localhost:8080/costumes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-costume'))
+            const res = await fetch("http://localhost:8080/costumes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/costumes'))
         } catch (err) {
             console.log(err)
         }
@@ -124,7 +124,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     return (
         <div className='selectMoreFormationBox'>
             <div className='headerWhite'>
-                <Link to='/select-start-formation'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <Link to='/start-formations'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
