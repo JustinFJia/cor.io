@@ -315,6 +315,15 @@ input {
     font-size: 25px;
 }
 
+.requeryPopupContainer img {
+    user-select: none;
+    -drag: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+}
+
 .closePopupContainer {
     cursor: pointer;
     float: right;

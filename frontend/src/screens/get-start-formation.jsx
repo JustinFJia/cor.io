@@ -26,6 +26,14 @@ const GetStartFormation = ({ updateCentralInfo }) => {
         } else if (lowerForm.includes('x-shape')) {
             const idx = lowerForm.indexOf('x-shape')
             data.startFormationList[i].formation = form.substring(0, idx) + 'X Shape' + form.substring(idx + 7)
+        } else if (lowerForm.includes('semi-circle')) {
+            const idx = lowerForm.indexOf('semi-circle')
+            data.startFormationList[i].formation = form.substring(0, idx) + 'Semicircle' + form.substring(idx + 11)
+        }
+
+        const vis = data.startFormationList[i].visualization
+        if (vis == '') {
+            data.startFormationList[i].visualization = 'novis'
         }
     }
     const formOne = data.startFormationList[0].formation
@@ -143,6 +151,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(0)} />
                     <h1>{formOneTitle}</h1>
                     <p>{formOneDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[0].visualization + '.png'}></img>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(1)}>select this formation</button>
                 </div>
             </div>
@@ -151,6 +160,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(1)} />
                     <h1>{formTwoTitle}</h1>
                     <p>{formTwoDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[1].visualization + '.png'}></img>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(2)}>select this formation</button>
                 </div>
             </div>
@@ -159,6 +169,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(2)} />
                     <h1>{formThreeTitle}</h1>
                     <p>{formThreeDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[2].visualization + '.png'}></img>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(3)}>select this formation</button>
                 </div>
             </div>
@@ -167,6 +178,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(3)} />
                     <h1>{formFourTitle}</h1>
                     <p>{formFourDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[3].visualization + '.png'}></img>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(4)}>select this formation</button>
                 </div>
             </div>
@@ -175,6 +187,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(4)} />
                     <h1>{formFiveTitle}</h1>
                     <p>{formFiveDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[4].visualization + '.png'}></img>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(5)}>select this formation</button>
                 </div>
             </div>
