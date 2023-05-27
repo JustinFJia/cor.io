@@ -17,10 +17,11 @@ export async function getCostumes(openai, song, feedback) {
 
 // Gets base64 encoded image visualizing proposed costume scheme
 export async function getCostumeVis(openai, costume) {
-    return await openai.createImage({
+    const vis = await openai.createImage({
         prompt: costume,
         n: 1,
-        size: "1024x1024",
-        // response_format: "b64_json" // for the full version of this app that is web-based, uncomment this
+        size: "512x512",
+        response_format: "b64_json"
     })
+    return vis.data.data[0].b64_json
 }

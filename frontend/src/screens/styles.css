@@ -172,7 +172,7 @@ input {
     gap: 20px;
 }
 
-.userVibes {
+.userVibes, .userFeedback {
     color: black;
 }
 

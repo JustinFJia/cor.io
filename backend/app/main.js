@@ -206,7 +206,7 @@ app.get('/costumes', async (req, res) => {
         const costumes = await getCostumes(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, "")
         data.costumes.costumeSchema = costumes
         let temp = await getCostumeVis(openai, data.costumes.costumeSchema)
-        data.costumes.visualization = temp.data.data[0].url
+        data.costumes.visualization = temp
         return res.status(200).json({
             success: true,
             content: {"data": data}
@@ -227,8 +227,8 @@ app.post('/costumesrequery', async(req, res) => {
     try {
         const costumes = await getCostumes(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, feedback)
         data.costumes.costumeSchema = costumes
-        let temp = await getCostumeVis(openai, data.costumes.costumeSchema)
-        data.costumes.visualization = temp.data.data[0].url
+        const vis = await getCostumeVis(openai, data.costumes.costumeSchema)
+        data.costumes.visualization = vis
         return res.status(200).json({
             success: true,
             content: {"data": data}

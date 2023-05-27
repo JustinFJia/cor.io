@@ -174,14 +174,16 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                         <p>{formTenShape}</p>
                     </div>
                 </div>
-                <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate formations</button>
+                <div className='formationCardsContainer'>
+                    <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate formations</button>
+                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(0)} />
                     <h1>{formOneTitle}</h1>
                     <p>{formOneDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -189,7 +191,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(1)} />
                     <h1>{formTwoTitle}</h1>
                     <p>{formTwoDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -197,7 +198,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(2)} />
                     <h1>{formThreeTitle}</h1>
                     <p>{formThreeDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -205,7 +205,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(3)} />
                     <h1>{formFourTitle}</h1>
                     <p>{formFourDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -213,7 +212,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(4)} />
                     <h1>{formFiveTitle}</h1>
                     <p>{formFiveDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -221,7 +219,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(5)} />
                     <h1>{formSixTitle}</h1>
                     <p>{formSixDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -229,7 +226,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(6)} />
                     <h1>{formSevenTitle}</h1>
                     <p>{formSevenDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -237,7 +233,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(7)} />
                     <h1>{formEightTitle}</h1>
                     <p>{formEightDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -245,7 +240,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(8)} />
                     <h1>{formNineTitle}</h1>
                     <p>{formNineDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -253,7 +247,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(9)} />
                     <h1>{formTenTitle}</h1>
                     <p>{formTenDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
                 </div>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>

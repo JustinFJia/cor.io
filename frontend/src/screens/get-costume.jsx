@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import './styles.css';
 import logoWhite from '../assets/logo-white.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRotateRight, faXmark, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faArrowRotateRight, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { CentralInfoContext } from '../context';
 
@@ -16,6 +16,8 @@ const GetCostume = ({ updateCentralInfo }) => {
 
     let data = useContext(CentralInfoContext)
     data = data[data.length - 1].data
+
+    const vis = 'data:image/png; base64, ' + data.costumes.visualization
 
     const skipFeedback = (e) => {
         updateFeedback('')
@@ -58,6 +60,7 @@ const GetCostume = ({ updateCentralInfo }) => {
             <div className='getCostumeContent'>
                 <p className='headerText'>See your curated costume scheme below. Follow it directly or use it for inspiration!</p>
                 <p>{data.costumes.costumeSchema}</p>
+                <img src={vis}></img>
                 <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate costumes</button>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>
