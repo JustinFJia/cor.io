@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './styles.css';
 import logoBlue from '../assets/logo-blue.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -32,8 +33,8 @@ const GetSong = ({ updateCentralInfo }) => {
     return (
         <div className='getSongBox'>
             <div className='headerWhite'>
-                <a href='/'><FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' /></a>
-                <h1><a href="/"><img src={logoBlue} alt='logo'></img></a></h1>
+                <Link to='/'><FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' /></Link>
+                <h1><Link to="/"><img src={logoBlue} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='getSongContainer'>

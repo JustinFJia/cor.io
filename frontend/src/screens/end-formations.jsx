@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import './styles.css';
 import logoWhite from '../assets/logo-white.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +15,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     const [feedback, updateFeedback] = useState(undefined)
 
     let data = useContext(CentralInfoContext)
-    data = data[data.length - 1]
+    data = data[data.length - 1].data
 
     for (let i = 0; i < 9; ++i) {
         const form = data.fullFormationList[i].formation
@@ -123,8 +124,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     return (
         <div className='selectMoreFormationBox'>
             <div className='headerWhite'>
-                <a href='/select-start-formation'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></a>
-                <h1><a href="/"><img src={logoWhite} alt='logo'></img></a></h1>
+                <Link to='/select-start-formation'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectMoreFormationContent'>

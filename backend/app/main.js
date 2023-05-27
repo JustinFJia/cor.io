@@ -66,7 +66,7 @@ app.post('/vibes', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"vibes": data.vibes, "songList": data.songList},
+            content: {"data": data},
         })
     } catch(err) {
         console.log(err)
@@ -89,7 +89,7 @@ app.post('/songsrequery', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"vibes": data.vibes, "songList": data.songList},
+            content: {"data": data},
         })
     } catch(err) {
         console.log(err)
@@ -111,7 +111,7 @@ app.post('/song', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"startFormationList": data.startFormationList},
+            content: {"data": data},
         })
     } catch(err) {
         console.log(err)
@@ -134,7 +134,7 @@ app.post('/startformrequery', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"startFormationList": data.startFormationList}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
@@ -163,7 +163,7 @@ app.post('/startform', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"fullFormationList": data.fullFormationList}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
@@ -193,7 +193,7 @@ app.post('/fullformrequery', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"fullFormationList": data.fullFormationList}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
@@ -209,7 +209,7 @@ app.get('/costumes', async (req, res) => {
         data.costumes.visualization = temp.data.data[0].url
         return res.status(200).json({
             success: true,
-            content: {"costumes": data.costumes}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
@@ -231,7 +231,7 @@ app.post('/costumesrequery', async(req, res) => {
         data.costumes.visualization = temp.data.data[0].url
         return res.status(200).json({
             success: true,
-            content: {"costumes": data.costumes}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
