@@ -59,15 +59,13 @@ const SelectSong = ({ updateCentralInfo }) => {
         } else {
             modal.style.display = 'flex';
         }
-        // if display is none, set display to flex
-        // if display is flex, set display to none
     }
 
     return (
         <div className='selectSongBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/start')} />
-                <h1><img src={logoWhite} alt='logo'></img></h1>
+                <a href='/start'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></a>
+                <h1><a href="/"><img src={logoWhite} alt='logo'></img></a></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectSongContent'>

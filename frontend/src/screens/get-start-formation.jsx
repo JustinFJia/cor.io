@@ -105,8 +105,8 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     return (
         <div className='selectStartFormationBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/select-song')} />
-                <h1><img src={logoWhite} alt='logo'></img></h1>
+                <a href='/select-song'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></a>
+                <h1><a href="/"><img src={logoWhite} alt='logo'></img></a></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectStartFormationContent'>

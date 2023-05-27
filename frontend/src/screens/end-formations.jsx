@@ -15,7 +15,6 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
 
     let data = useContext(CentralInfoContext)
     data = data[data.length - 1]
-    console.log(data) // delete later
 
     for (let i = 0; i < 9; ++i) {
         const form = data.fullFormationList[i].formation
@@ -97,7 +96,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             }
-            const res = await fetch("http://localhost:8080/costumes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-more-formations'))
+            const res = await fetch("http://localhost:8080/costumes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-costume'))
         } catch (err) {
             console.log(err)
         }
@@ -124,8 +123,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     return (
         <div className='selectMoreFormationBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/select-start-formation')} />
-                <h1><img src={logoWhite} alt='logo'></img></h1>
+                <a href='/select-start-formation'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></a>
+                <h1><a href="/"><img src={logoWhite} alt='logo'></img></a></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectMoreFormationContent'>

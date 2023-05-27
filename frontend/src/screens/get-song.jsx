@@ -32,8 +32,8 @@ const GetSong = ({ updateCentralInfo }) => {
     return (
         <div className='getSongBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' onClick={() => navigate('/')} />
-                <h1><img src={logoBlue} alt='logo'></img></h1>
+                <a href='/'><FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' /></a>
+                <h1><a href="/"><img src={logoBlue} alt='logo'></img></a></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='getSongContainer'>
