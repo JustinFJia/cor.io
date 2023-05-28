@@ -63,6 +63,10 @@ input {
     font-size: 24px;
 }
 
+.homepageContent img {
+    width: 70vw;
+}
+
 /* this is the homepage button styling for the gradient background, in case we want to revert back to it */
 /*
 .homepageContent button {
