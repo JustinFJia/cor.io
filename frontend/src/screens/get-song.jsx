@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import './styles.css';
-import logoBlue from '../assets/logo-blue.png';
+import logoWhite from '../assets/logo-white.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -33,16 +33,19 @@ const GetSong = ({ updateCentralInfo }) => {
     return (
         <div className='getSongBox'>
             <div className='headerWhite'>
-                <Link to='/'><FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' /></Link>
-                <h1><Link to="/"><img src={logoBlue} alt='logo'></img></Link></h1>
+                <Link to='/'><FontAwesomeIcon icon={faArrowLeft} className='backButtonVibes' size='3x' /></Link>
+                <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='getSongContainer'>
-                <p>What are the vibes of your piece?</p>
-                <form className='userInput'>
-                    <input type="text" className='userVibes' onChange={(e) => updateVibes(e.target.value)} onKeyDown={(e) => goToSongsList(e, 'key')}></input>
-                    <input type="submit" value="submit" className='getSongButton' onClick={(e) => goToSongsList(e, 'click')}></input>
-                </form>
+                <h2>Let's find you a song.</h2>
+                <div className='getSongContent'>
+                    <p>What are the vibes you envsion?</p>
+                    <form className='userInput'>
+                        <input type="text" className='userVibes' onChange={(e) => updateVibes(e.target.value)} onKeyDown={(e) => goToSongsList(e, 'key')}></input>
+                        <input type="submit" value="submit" className='getSongButton' onClick={(e) => goToSongsList(e, 'click')}></input>
+                    </form>
+                </div>
             </div>
         </div>
     )
