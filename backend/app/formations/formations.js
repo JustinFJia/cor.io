@@ -68,72 +68,29 @@ export function getVis(form, isFull) {
     }
     const formatted = form.replace(/-/g, '').replace(/\s/g, '').toLowerCase()
     if (formatted.includes('diagonalline')) {
-        return `Here's what this could look like from above:
-           O
-          O
-         O
-        O`
+        return "diagonal_line"
     } else if (formatted.includes('line')) {
-        return `Here's what this could look like from above:
-        O
-        O
-        O
-        O`
+        return "line"
     } if (formatted.includes('pyramid') | formatted.includes('triangle')) {
-        return `Here's what this could look like from above:
-           O
-          O O
-         O O O
-        O O O O`
+        return "triangle"
     } if (formatted.includes('box') | formatted.includes('square')) {
-        return `Here's what this could look like from above:
-        O O O O O
-        O       O
-        O       O
-        O O O O O`
+        return "square"
     } if (formatted.includes('diamond')) {
-        return `Here's what this could look like from above:
-          O
-         O O
-        O   O
-         O O
-          O`
+        return "diamond"
+    } if (formatted.includes('spiral')) {
+        return "spiral"
     } if (formatted.includes('vshape') | formatted.includes('vformation')) {
-        return `Here's what this could look like from above:
-        O     O
-         O   O
-          O O
-           O`
+        return "v"
+    } if (formatted.includes('xshape') | formatted.includes('xformation')) {
+        return "x"
     } if (formatted.includes('heart')) {
-        return `Here's what this could look like from above:
-         O   O
-        O  O  O
-         O   O
-          O O
-           O`
+        return "heart"
     } if (formatted.includes('star')) {
-        return `Here's what this could look like from above:
-             O
-            O O
-         O O   O O
-          O  O  O
-         O       O`
+        return "star"
     } if (formatted.includes('semicircle')) {
-        return `Here's what this could look like from above:
-            O
-         O  O
-        O   O
-        O   O
-         O  O
-            O`
+        return "semicircle"
     } else if (formatted.includes('circle')) {
-        return `Here's what this could look like from above:
-            O  O
-         O        O
-        O          O
-        O          O
-         O        O
-            O  O`
+        return "circle"
     }
-    return ''
+    return ""
 }

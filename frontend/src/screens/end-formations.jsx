@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { Link } from "react-router-dom";
 import './styles.css';
 import logoWhite from '../assets/logo-white.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,8 +15,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     const [feedback, updateFeedback] = useState(undefined)
 
     let data = useContext(CentralInfoContext)
-    data = data[data.length - 1]
-    console.log(data) // delete later
+    data = data[data.length - 1].data
 
     for (let i = 0; i < 9; ++i) {
         const form = data.fullFormationList[i].formation
@@ -26,6 +26,14 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
         } else if (lowerForm.includes('x-shape')) {
             const idx = lowerForm.indexOf('x-shape')
             data.fullFormationList[i].formation = form.substring(0, idx) + 'X Shape' + form.substring(idx + 7)
+        } else if (lowerForm.includes('semi-circle')) {
+            const idx = lowerForm.indexOf('semi-circle')
+            data.fullFormationList[i].formation = form.substring(0, idx) + 'Semicircle' + form.substring(idx + 11)
+        }
+
+        const vis = data.fullFormationList[i].visualization
+        if (vis == '') {
+            data.fullFormationList[i].visualization = 'novis'
         }
     }
     const formOne = data.fullFormationList[0].formation
@@ -85,7 +93,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ feedback }),
             }
-            const res = await fetch("http://localhost:8080/fullformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-more-formations'))
+            const res = await fetch("http://localhost:8080/fullformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/full-formations'))
         } catch (err) {
             console.log(err)
         }
@@ -97,7 +105,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             }
-            const res = await fetch("http://localhost:8080/costumes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-more-formations'))
+            const res = await fetch("http://localhost:8080/costumes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/costumes'))
         } catch (err) {
             console.log(err)
         }
@@ -124,8 +132,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     return (
         <div className='selectMoreFormationBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/select-start-formation')} />
-                <h1><img src={logoWhite} alt='logo'></img></h1>
+                <Link to='/start-formations'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectMoreFormationContent'>
@@ -174,14 +182,18 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                         <p>{formTenShape}</p>
                     </div>
                 </div>
-                <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate formations</button>
+                <div className='formationCardsContainer'>
+                    <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate formations</button>
+                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(0)} />
                     <h1>{formOneTitle}</h1>
                     <p>{formOneDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[0].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[0].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -189,7 +201,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(1)} />
                     <h1>{formTwoTitle}</h1>
                     <p>{formTwoDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[1].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[1].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -197,7 +210,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(2)} />
                     <h1>{formThreeTitle}</h1>
                     <p>{formThreeDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[2].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[2].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -205,7 +219,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(3)} />
                     <h1>{formFourTitle}</h1>
                     <p>{formFourDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[3].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[3].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -213,7 +228,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(4)} />
                     <h1>{formFiveTitle}</h1>
                     <p>{formFiveDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[4].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[4].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -221,7 +237,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(5)} />
                     <h1>{formSixTitle}</h1>
                     <p>{formSixDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[5].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[5].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -229,7 +246,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(6)} />
                     <h1>{formSevenTitle}</h1>
                     <p>{formSevenDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[6].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[6].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -237,7 +255,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(7)} />
                     <h1>{formEightTitle}</h1>
                     <p>{formEightDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[7].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[7].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -245,7 +264,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(8)} />
                     <h1>{formNineTitle}</h1>
                     <p>{formNineDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[8].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[8].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -253,7 +273,8 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(9)} />
                     <h1>{formTenTitle}</h1>
                     <p>{formTenDetail}</p>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
+                    <img src={'/src/assets/' + data.fullFormationList[9].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[9].transition}</p>
                 </div>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>

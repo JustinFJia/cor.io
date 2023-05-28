@@ -49,6 +49,15 @@ input {
     align-items: center;
 }
 
+.homepageContent img {
+    user-select: none;
+    -drag: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+}
+
 .homepageContent p {
     color: white;
     font-size: 24px;
@@ -110,6 +119,7 @@ input {
 
 .headerWhite img {
     margin-right: 42px;
+    user-select: none;
 }
 
 .backButtonBlue {
@@ -162,7 +172,7 @@ input {
     gap: 20px;
 }
 
-.userVibes {
+.userVibes, .userFeedback {
     color: black;
 }
 
@@ -176,16 +186,20 @@ input {
     color: white;
 }
 
+.getSongButton:hover {
+    cursor: pointer;
+}
+
 .getSongButton:hover, .getSongButton:active, .getSongButton:focus {
     background-color: #276bd0;
     transition: 0.4s ease;
 }
 
-.selectSongBox, .selectStartFormationBox, .selectMoreFormationBox {
+.selectSongBox, .selectStartFormationBox, .selectMoreFormationBox, .getCostumeBox {
     background: linear-gradient(180deg, #0C4FB1 0%, #A0BAE1 60.94%, #FFFFFF 100%);
 }
 
-.selectSongContent, .selectStartFormationContent, .selectMoreFormationContent {
+.selectSongContent, .selectStartFormationContent, .selectMoreFormationContent, .getCostumeContent {
     height: 90vh;
     width: 100vw;
     display: flex;
@@ -220,6 +234,7 @@ input {
     background-color: #0C4FB1;
     color: white;
     transition: 0.4s ease;
+    cursor: pointer;
 }
 
 .headerText{
@@ -305,6 +320,15 @@ input {
     font-size: 25px;
 }
 
+.requeryPopupContainer img {
+    user-select: none;
+    -drag: none;
+    -moz-user-select: none;
+    -webkit-user-drag: none;
+    -webkit-user-select: none;
+    pointer-events: none;
+}
+
 .closePopupContainer {
     cursor: pointer;
     float: right;
@@ -387,6 +411,7 @@ input {
     color: white;
     background-color: #0C4FB1;
     transition: 0.4s ease;
+    cursor: pointer;
 }
 
 .finalFormationCard {

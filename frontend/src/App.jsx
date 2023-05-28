@@ -8,6 +8,7 @@ import GetSong from './screens/get-song';
 import SelectSong from './screens/select-song';
 import GetStartFormation from './screens/get-start-formation';
 import GetMoreFormations from './screens/end-formations';
+import GetCostume from './screens/get-costume';
 
 function App() {
   const [state, dispatch] = useReducer(reducer, [])
@@ -27,9 +28,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Welcome />} />
           <Route path="/start" element={<GetSong updateCentralInfo={updateCentralInfo} />} />
-          <Route path="/select-song" element={<SelectSong updateCentralInfo={updateCentralInfo} />} />
-          <Route path="/select-start-formation" element={<GetStartFormation updateCentralInfo={updateCentralInfo} />} />
-          <Route path="/select-more-formations" element={<GetMoreFormations updateCentralInfo={updateCentralInfo} />} />
+          <Route path="/songs" element={<SelectSong updateCentralInfo={updateCentralInfo} />} />
+          <Route path="/start-formations" element={<GetStartFormation updateCentralInfo={updateCentralInfo} />} />
+          <Route path="/full-formations" element={<GetMoreFormations updateCentralInfo={updateCentralInfo} />} />
+          <Route path="/costumes" element={<GetCostume updateCentralInfo={updateCentralInfo} />} />
         </Routes>
       </BrowserRouter>
     </CentralInfoProvider>

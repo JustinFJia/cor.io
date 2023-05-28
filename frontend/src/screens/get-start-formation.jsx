@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './styles.css';
 import logoWhite from '../assets/logo-white.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -14,7 +15,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     const [feedback, updateFeedback] = useState(undefined)
 
     let data = useContext(CentralInfoContext)
-    data = data[data.length - 1]
+    data = data[data.length - 1].data
 
     for (let i = 0; i < 5; ++i) {
         const form = data.startFormationList[i].formation
@@ -25,6 +26,14 @@ const GetStartFormation = ({ updateCentralInfo }) => {
         } else if (lowerForm.includes('x-shape')) {
             const idx = lowerForm.indexOf('x-shape')
             data.startFormationList[i].formation = form.substring(0, idx) + 'X Shape' + form.substring(idx + 7)
+        } else if (lowerForm.includes('semi-circle')) {
+            const idx = lowerForm.indexOf('semi-circle')
+            data.startFormationList[i].formation = form.substring(0, idx) + 'Semicircle' + form.substring(idx + 11)
+        }
+
+        const vis = data.startFormationList[i].visualization
+        if (vis == '') {
+            data.startFormationList[i].visualization = 'novis'
         }
     }
     const formOne = data.startFormationList[0].formation
@@ -64,7 +73,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ feedback }),
             }
-            const res = await fetch("http://localhost:8080/startformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-start-formation'))
+            const res = await fetch("http://localhost:8080/startformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/start-formations'))
         } catch (err) {
             console.log(err)
         }
@@ -78,7 +87,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ form }),
             }
-            const res = await fetch("http://localhost:8080/startform", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-more-formations'))
+            const res = await fetch("http://localhost:8080/fullform", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/full-formations'))
         } catch (err) {
             console.log(err)
         }
@@ -105,8 +114,8 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     return (
         <div className='selectStartFormationBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' onClick={() => navigate('/select-song')} />
-                <h1><img src={logoWhite} alt='logo'></img></h1>
+                <Link to='/songs'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectStartFormationContent'>
@@ -142,6 +151,8 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(0)} />
                     <h1>{formOneTitle}</h1>
                     <p>{formOneDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[0].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[0].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(1)}>select this formation</button>
                 </div>
             </div>
@@ -150,6 +161,8 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(1)} />
                     <h1>{formTwoTitle}</h1>
                     <p>{formTwoDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[1].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[1].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(2)}>select this formation</button>
                 </div>
             </div>
@@ -158,6 +171,8 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(2)} />
                     <h1>{formThreeTitle}</h1>
                     <p>{formThreeDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[2].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[2].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(3)}>select this formation</button>
                 </div>
             </div>
@@ -166,6 +181,8 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(3)} />
                     <h1>{formFourTitle}</h1>
                     <p>{formFourDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[3].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[3].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(4)}>select this formation</button>
                 </div>
             </div>
@@ -174,6 +191,8 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(4)} />
                     <h1>{formFiveTitle}</h1>
                     <p>{formFiveDetail}</p>
+                    <img src={'/src/assets/' + data.startFormationList[4].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[4].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(5)}>select this formation</button>
                 </div>
             </div>

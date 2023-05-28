@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import './styles.css';
 import logoBlue from '../assets/logo-blue.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -23,7 +24,7 @@ const GetSong = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ vibes }),
             };
-            const res = await fetch("http://localhost:8080/vibes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/select-song'));
+            const res = await fetch("http://localhost:8080/songs", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/songs'));
         } catch (err) {
             console.log(err);
         }
@@ -32,8 +33,8 @@ const GetSong = ({ updateCentralInfo }) => {
     return (
         <div className='getSongBox'>
             <div className='headerWhite'>
-                <FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' onClick={() => navigate('/')} />
-                <h1><img src={logoBlue} alt='logo'></img></h1>
+                <Link to='/'><FontAwesomeIcon icon={faArrowLeft} className='backButtonBlue' size='3x' /></Link>
+                <h1><Link to="/"><img src={logoBlue} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='getSongContainer'>

@@ -52,7 +52,7 @@ var data = {
 }
 
 // Handle POST request for vibes
-app.post('/vibes', async (req, res) => {
+app.post('/songs', async (req, res) => {
     const vibes = req.body.vibes
     try {
         if (vibes == null) {
@@ -66,7 +66,7 @@ app.post('/vibes', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"vibes": data.vibes, "songList": data.songList},
+            content: {"data": data},
         })
     } catch(err) {
         console.log(err)
@@ -89,7 +89,7 @@ app.post('/songsrequery', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"vibes": data.vibes, "songList": data.songList},
+            content: {"data": data},
         })
     } catch(err) {
         console.log(err)
@@ -97,7 +97,7 @@ app.post('/songsrequery', async (req, res) => {
 })
 
 // Handle POST request for song selection/starting formation generation
-app.post('/song', async (req, res) => {
+app.post('/startform', async (req, res) => {
     const chosenSong = req.body.song
     try {
         if (chosenSong == null) {
@@ -111,7 +111,7 @@ app.post('/song', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"startFormationList": data.startFormationList},
+            content: {"data": data},
         })
     } catch(err) {
         console.log(err)
@@ -134,7 +134,7 @@ app.post('/startformrequery', async (req, res) => {
         }
         return res.status(200).json({
             success: true,
-            content: {"startFormationList": data.startFormationList}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
@@ -142,7 +142,7 @@ app.post('/startformrequery', async (req, res) => {
 })
 
 // Handle POST request for starting formation selection/full formation generation
-app.post('/startform', async (req, res) => {
+app.post('/fullform', async (req, res) => {
     const chosenStartForm = req.body.form
     try {
         if (chosenStartForm == null) {
@@ -153,17 +153,21 @@ app.post('/startform', async (req, res) => {
         for (let i = 0; i < 10; ++i) {
             if (!full[i].includes('Transition')) {
                 data.fullFormationList[i].formation = full[i]
-                data.fullFormationList[i].visualization = getVis(full[i], 0)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 0)
                 data.fullFormationList[i].transition = ''
+            } else if (full[i].toLowerCase().includes('final transition')) {
+                data.fullFormationList[i].formation = full[i].substring(0, full[i].toLowerCase().indexOf('final transition') - 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
+                data.fullFormationList[i].transition = full[i].substring(full[i].toLowerCase().indexOf('final transition'))
             } else {
                 data.fullFormationList[i].formation = full[i].substring(0, full[i].indexOf('Transition') - 1)
-                data.fullFormationList[i].visualization = getVis(full[i], 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
                 data.fullFormationList[i].transition = full[i].substring(full[i].indexOf('Transition'))
             }
         }
         return res.status(200).json({
             success: true,
-            content: {"fullFormationList": data.fullFormationList}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
@@ -183,17 +187,21 @@ app.post('/fullformrequery', async (req, res) => {
         for (let i = 0; i < 10; ++i) {
             if (!full[i].includes('Transition')) {
                 data.fullFormationList[i].formation = full[i]
-                data.fullFormationList[i].visualization = getVis(full[i], 0)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 0)
                 data.fullFormationList[i].transition = ''
+            } else if (full[i].toLowerCase().includes('final transition')) {
+                data.fullFormationList[i].formation = full[i].substring(0, full[i].toLowerCase().indexOf('final transition') - 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
+                data.fullFormationList[i].transition = full[i].substring(full[i].toLowerCase().indexOf('final transition'))
             } else {
                 data.fullFormationList[i].formation = full[i].substring(0, full[i].indexOf('Transition') - 1)
-                data.fullFormationList[i].visualization = getVis(full[i], 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
                 data.fullFormationList[i].transition = full[i].substring(full[i].indexOf('Transition'))
             }
         }
         return res.status(200).json({
             success: true,
-            content: {"fullFormationList": data.fullFormationList}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
@@ -206,10 +214,10 @@ app.get('/costumes', async (req, res) => {
         const costumes = await getCostumes(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, "")
         data.costumes.costumeSchema = costumes
         let temp = await getCostumeVis(openai, data.costumes.costumeSchema)
-        data.costumes.visualization = temp.data.data[0].url
+        data.costumes.visualization = temp
         return res.status(200).json({
             success: true,
-            content: {"costumes": data.costumes}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
@@ -227,11 +235,11 @@ app.post('/costumesrequery', async(req, res) => {
     try {
         const costumes = await getCostumes(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, feedback)
         data.costumes.costumeSchema = costumes
-        let temp = await getCostumeVis(openai, data.costumes.costumeSchema)
-        data.costumes.visualization = temp.data.data[0].url
+        const vis = await getCostumeVis(openai, data.costumes.costumeSchema)
+        data.costumes.visualization = vis
         return res.status(200).json({
             success: true,
-            content: {"costumes": data.costumes}
+            content: {"data": data}
         })
     } catch(err) {
         console.log(err)
