@@ -153,11 +153,15 @@ app.post('/fullform', async (req, res) => {
         for (let i = 0; i < 10; ++i) {
             if (!full[i].includes('Transition')) {
                 data.fullFormationList[i].formation = full[i]
-                data.fullFormationList[i].visualization = getVis(full[i], 0)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 0)
                 data.fullFormationList[i].transition = ''
+            } else if (full[i].toLowerCase().includes('final transition')) {
+                data.fullFormationList[i].formation = full[i].substring(0, full[i].toLowerCase().indexOf('final transition') - 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
+                data.fullFormationList[i].transition = full[i].substring(full[i].toLowerCase().indexOf('final transition'))
             } else {
                 data.fullFormationList[i].formation = full[i].substring(0, full[i].indexOf('Transition') - 1)
-                data.fullFormationList[i].visualization = getVis(full[i], 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
                 data.fullFormationList[i].transition = full[i].substring(full[i].indexOf('Transition'))
             }
         }
@@ -183,11 +187,15 @@ app.post('/fullformrequery', async (req, res) => {
         for (let i = 0; i < 10; ++i) {
             if (!full[i].includes('Transition')) {
                 data.fullFormationList[i].formation = full[i]
-                data.fullFormationList[i].visualization = getVis(full[i], 0)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 0)
                 data.fullFormationList[i].transition = ''
+            } else if (full[i].toLowerCase().includes('final transition')) {
+                data.fullFormationList[i].formation = full[i].substring(0, full[i].toLowerCase().indexOf('final transition') - 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
+                data.fullFormationList[i].transition = full[i].substring(full[i].toLowerCase().indexOf('final transition'))
             } else {
                 data.fullFormationList[i].formation = full[i].substring(0, full[i].indexOf('Transition') - 1)
-                data.fullFormationList[i].visualization = getVis(full[i], 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
                 data.fullFormationList[i].transition = full[i].substring(full[i].indexOf('Transition'))
             }
         }

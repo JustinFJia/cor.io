@@ -193,6 +193,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formOneTitle}</h1>
                     <p>{formOneDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[0].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[0].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -201,6 +202,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formTwoTitle}</h1>
                     <p>{formTwoDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[1].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[1].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -209,6 +211,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formThreeTitle}</h1>
                     <p>{formThreeDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[2].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[2].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -217,6 +220,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formFourTitle}</h1>
                     <p>{formFourDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[3].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[3].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -225,6 +229,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formFiveTitle}</h1>
                     <p>{formFiveDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[4].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[4].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -233,6 +238,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formSixTitle}</h1>
                     <p>{formSixDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[5].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[5].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -241,6 +247,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formSevenTitle}</h1>
                     <p>{formSevenDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[6].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[6].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -249,6 +256,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formEightTitle}</h1>
                     <p>{formEightDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[7].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[7].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -257,6 +265,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formNineTitle}</h1>
                     <p>{formNineDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[8].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[8].transition}</p>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
@@ -265,6 +274,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                     <h1>{formTenTitle}</h1>
                     <p>{formTenDetail}</p>
                     <img src={'/src/assets/' + data.fullFormationList[9].visualization + '.png'}></img>
+                    <p>{data.fullFormationList[9].transition}</p>
                 </div>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>
