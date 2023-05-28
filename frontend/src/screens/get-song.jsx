@@ -40,7 +40,7 @@ const GetSong = ({ updateCentralInfo }) => {
             <div className='getSongContainer'>
                 <h2>Let's find you a song.</h2>
                 <div className='getSongContent'>
-                    <p>What are the vibes you envsion?</p>
+                    <p>What are the vibes you envision?</p>
                     <form className='userInput'>
                         <input type="text" className='userVibes' onChange={(e) => updateVibes(e.target.value)} onKeyDown={(e) => goToSongsList(e, 'key')}></input>
                         <input type="submit" value="submit" className='getSongButton' onClick={(e) => goToSongsList(e, 'click')}></input>
