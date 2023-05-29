@@ -27,6 +27,7 @@ const SelectSong = ({ updateCentralInfo }) => {
             return
         }
         event.preventDefault()
+        togglePopupDisplay();
         try {
             const req = {
                 method: "POST",
@@ -70,7 +71,7 @@ const SelectSong = ({ updateCentralInfo }) => {
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectSongContent'>
-                <h2>Let's find you a song.</h2>
+                <h2>Great!</h2>
                 <p className='headerText'>Here are 3 songs with the vibe “{data.vibes}”. Which would you prefer?</p>
                 <div className='songCardsContainer'>
                     <div className='songCard' onClick={() => goToFormations(1)}>
