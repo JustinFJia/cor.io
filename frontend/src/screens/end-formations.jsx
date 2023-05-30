@@ -93,6 +93,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ feedback }),
             }
+            document.getElementById('loader-container').style.display = 'flex'
             const res = await fetch("http://localhost:8080/fullformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/full-formations'))
         } catch (err) {
             console.log(err)
@@ -105,6 +106,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                 method: "GET",
                 headers: { "Content-Type": "application/json" },
             }
+            document.getElementById('loader-container').style.display = 'flex'
             const res = await fetch("http://localhost:8080/costumes", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/costumes'))
         } catch (err) {
             console.log(err)
@@ -131,6 +133,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
 
     return (
         <div className='selectMoreFormationBox'>
+            <div id='loader-container'></div>
             <div className='headerWhite'>
                 <Link to='/start-formations'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>

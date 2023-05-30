@@ -73,6 +73,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ feedback }),
             }
+            document.getElementById('loader-container').style.display = 'flex'
             const res = await fetch("http://localhost:8080/startformrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/start-formations'))
         } catch (err) {
             console.log(err)
@@ -87,6 +88,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ form }),
             }
+            document.getElementById('loader-container').style.display = 'flex'
             const res = await fetch("http://localhost:8080/fullform", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/full-formations'))
         } catch (err) {
             console.log(err)
@@ -113,6 +115,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
 
     return (
         <div className='selectStartFormationBox'>
+            <div id='loader-container'></div>
             <div className='headerWhite'>
                 <Link to='/songs'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>

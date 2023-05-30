@@ -33,6 +33,7 @@ const SelectSong = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ feedback }),
             };
+            document.getElementById('loader-container').style.display = 'flex'
             const res = await fetch("http://localhost:8080/songsrequery", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/songs'));
         } catch (err) {
             console.log(err)
@@ -47,6 +48,7 @@ const SelectSong = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ song }),
             }
+            document.getElementById('loader-container').style.display = 'flex'
             const res = await fetch("http://localhost:8080/startform", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/start-formations'))
         } catch (err) {
             console.log(err)
@@ -64,6 +66,7 @@ const SelectSong = ({ updateCentralInfo }) => {
 
     return (
         <div className='selectSongBox'>
+            <div id='loader-container'></div>
             <div className='headerWhite'>
                 <Link to='/start'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>

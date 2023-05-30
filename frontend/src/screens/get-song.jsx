@@ -24,6 +24,7 @@ const GetSong = ({ updateCentralInfo }) => {
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ vibes }),
             };
+            document.getElementById('loader-container').style.display = 'flex'
             const res = await fetch("http://localhost:8080/songs", req).then((res) => (res.json())).then((res) => updateCentralInfo(res.content)).then(() => navigate('/songs'));
         } catch (err) {
             console.log(err);
@@ -32,6 +33,7 @@ const GetSong = ({ updateCentralInfo }) => {
 
     return (
         <div className='getSongBox'>
+            <div id='loader-container'></div>
             <div className='headerWhite'>
                 <Link to='/'><FontAwesomeIcon icon={faArrowLeft} className='backButtonVibes' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
