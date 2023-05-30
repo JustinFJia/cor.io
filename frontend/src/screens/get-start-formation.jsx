@@ -155,7 +155,6 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <h1>{formOneTitle}</h1>
                     <p>{formOneDetail}</p>
                     <img src={'/src/assets/' + data.startFormationList[0].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[0].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(1)}>select this formation</button>
                 </div>
             </div>
@@ -165,7 +164,6 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <h1>{formTwoTitle}</h1>
                     <p>{formTwoDetail}</p>
                     <img src={'/src/assets/' + data.startFormationList[1].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[1].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(2)}>select this formation</button>
                 </div>
             </div>
@@ -175,7 +173,6 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <h1>{formThreeTitle}</h1>
                     <p>{formThreeDetail}</p>
                     <img src={'/src/assets/' + data.startFormationList[2].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[2].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(3)}>select this formation</button>
                 </div>
             </div>
@@ -185,7 +182,6 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <h1>{formFourTitle}</h1>
                     <p>{formFourDetail}</p>
                     <img src={'/src/assets/' + data.startFormationList[3].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[3].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(4)}>select this formation</button>
                 </div>
             </div>
@@ -195,7 +191,6 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                     <h1>{formFiveTitle}</h1>
                     <p>{formFiveDetail}</p>
                     <img src={'/src/assets/' + data.startFormationList[4].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[4].transition}</p>
                     <button className='selectFormationButton' onClick={() => goToFullFormations(5)}>select this formation</button>
                 </div>
             </div>

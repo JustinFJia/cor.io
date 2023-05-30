@@ -107,7 +107,7 @@ app.post('/startform', async (req, res) => {
         const startFormations = await getStart(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, data.vibes, "")
         for (let i = 0; i < 5; ++i) {
             data.startFormationList[i].formation = startFormations[i]
-            data.startFormationList[i].visualization = getVis(startFormations[i], 0)
+            data.startFormationList[i].visualization = getVis(startFormations[i])
         }
         return res.status(200).json({
             success: true,
@@ -130,7 +130,7 @@ app.post('/startformrequery', async (req, res) => {
         const startFormations = await getStart(openai, data.songChoice.songName + " by " + data.songChoice.songArtist, data.vibes, feedback)
         for (let i = 0; i < 5; ++i) {
             data.startFormationList[i].formation = startFormations[i]
-            data.startFormationList[i].visualization = getVis(startFormations[i], 0)
+            data.startFormationList[i].visualization = getVis(startFormations[i])
         }
         return res.status(200).json({
             success: true,
@@ -153,15 +153,15 @@ app.post('/fullform', async (req, res) => {
         for (let i = 0; i < 10; ++i) {
             if (!full[i].includes('Transition')) {
                 data.fullFormationList[i].formation = full[i]
-                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 0)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation)
                 data.fullFormationList[i].transition = ''
             } else if (full[i].toLowerCase().includes('final transition')) {
                 data.fullFormationList[i].formation = full[i].substring(0, full[i].toLowerCase().indexOf('final transition') - 1)
-                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation)
                 data.fullFormationList[i].transition = full[i].substring(full[i].toLowerCase().indexOf('final transition'))
             } else {
                 data.fullFormationList[i].formation = full[i].substring(0, full[i].indexOf('Transition') - 1)
-                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation)
                 data.fullFormationList[i].transition = full[i].substring(full[i].indexOf('Transition'))
             }
         }
@@ -187,15 +187,15 @@ app.post('/fullformrequery', async (req, res) => {
         for (let i = 0; i < 10; ++i) {
             if (!full[i].includes('Transition')) {
                 data.fullFormationList[i].formation = full[i]
-                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 0)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation)
                 data.fullFormationList[i].transition = ''
             } else if (full[i].toLowerCase().includes('final transition')) {
                 data.fullFormationList[i].formation = full[i].substring(0, full[i].toLowerCase().indexOf('final transition') - 1)
-                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation)
                 data.fullFormationList[i].transition = full[i].substring(full[i].toLowerCase().indexOf('final transition'))
             } else {
                 data.fullFormationList[i].formation = full[i].substring(0, full[i].indexOf('Transition') - 1)
-                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation, 1)
+                data.fullFormationList[i].visualization = getVis(data.fullFormationList[i].formation)
                 data.fullFormationList[i].transition = full[i].substring(full[i].indexOf('Transition'))
             }
         }

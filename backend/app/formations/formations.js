@@ -62,10 +62,7 @@ function parseFull(fullFms) {
 }
 
 // Gets text-based visualization of formation if the formation is recognized
-export function getVis(form, isFull) {
-    if (isFull) {
-        form = form.substring(0, form.indexOf('Transition') - 2)
-    }
+export function getVis(form) {
     const formatted = form.replace(/-/g, '').replace(/\s/g, '').toLowerCase()
     if (formatted.includes('diagonalline')) {
         return "diagonal_line"

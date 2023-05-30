@@ -17,6 +17,12 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     let data = useContext(CentralInfoContext)
     data = data[data.length - 1].data
 
+    console.log(data)
+
+    for (let i = 0; i < 9; ++i) {
+        console.log(data.fullFormationList[i].visualization)
+    }
+
     for (let i = 0; i < 9; ++i) {
         const form = data.fullFormationList[i].formation
         const lowerForm = form.toLowerCase()
