@@ -2,22 +2,13 @@
 
 cor&#46;io is a web-based choreographing tool that simplifies the song and formation selection process so choreographers can focus on what really matters - the creative process.
 
-## Directory Structure
-- **app/** - holds core functionality of cor&#46;io
-  - **costumes/** - holds costumes suggestion functionality
-  - **formations/** - holds formations suggestion functionality
-  - **songs/** - holds songs suggestion functionality
-- **static/** - holds static web components of cor&#46;io
-  - **img/** - holds images
-  - **js/** - holds JS
-  - **styles/** - holds CSS
-- **templates/** - holds HTML templates of web cor&#46;io
-
 ## Tech
 
 cor&#46;io uses the following technologies to work properly:
 
-- [node.js](https://nodejs.org/en) - for the JavaScript backend
+- [Node.js](https://nodejs.org/) - for the JavaScript backend
+- [Express](https://expressjs.com/) - Node.js web framework
+- [React](https://react.dev/) - library for the frontend
 
 ## Installation
 
@@ -35,8 +26,23 @@ Ensure that you have [Node.js](https://nodejs.org/en) installed.
 node --version
 ```
 
-Install the dependencies and devDependencies.
+Install all the dependencies for the frontend and backend.
 
 ```sh
+cd backend
 npm install
+cd ../frontend
+npm install
+cd ..
+```
+
+Start the frontend and backend servers in separate terminal instances.
+
+```sh
+cd backend
+npm run dev
+```
+```sh
+cd frontend
+npm run dev
 ```
