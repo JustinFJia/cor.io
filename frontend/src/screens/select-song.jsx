@@ -27,6 +27,7 @@ const SelectSong = ({ updateCentralInfo }) => {
             return
         }
         event.preventDefault()
+        togglePopupDisplay();
         try {
             const req = {
                 method: "POST",
@@ -68,11 +69,12 @@ const SelectSong = ({ updateCentralInfo }) => {
         <div className='selectSongBox'>
             <div id='loader-container'></div>
             <div className='headerWhite'>
-                <Link to='/start'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <Link to='/start'><FontAwesomeIcon icon={faArrowLeft} className='backButtonSelectSong' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectSongContent'>
+                <h2>Great!</h2>
                 <p className='headerText'>Here are 3 songs with the vibe “{data.vibes}”. Which would you prefer?</p>
                 <div className='songCardsContainer'>
                     <div className='songCard' onClick={() => goToFormations(1)}>
@@ -88,7 +90,7 @@ const SelectSong = ({ updateCentralInfo }) => {
                         <p>by {data.songList[2].songArtist}</p>
                     </div>
                 </div>
-                <button className='requeryButton' onClick={() => togglePopupDisplay()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='1x' />regenerate songs list</button>
+                <button className='requeryButton requery songsRequery' onClick={() => togglePopupDisplay()}><FontAwesomeIcon icon={faArrowRotateRight} size='1x' />regenerate songs list</button>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
@@ -97,8 +99,8 @@ const SelectSong = ({ updateCentralInfo }) => {
                     <form className='userInput'>
                         <input type="text" className='userFeedback' onChange={(e) => updateFeedback(e.target.value)} onKeyDown={(e) => requery(e, 'key')}></input>
                         <div className='requeryButtonsContainer'>
-                            <button className='skipFeedbackButton' onClick={(e) => skipFeedback(e)}>skip feedback</button>
-                            <input type="submit" value="submit feedback" className='getSongButton' onClick={(e) => requery(e, 'click')}></input>
+                            <button className='skipFeedbackSongButton' onClick={(e) => skipFeedback(e)}>skip feedback</button>
+                            <input type="submit" value="submit feedback" className='submitFeedbackSongButton' onClick={(e) => requery(e, 'click')}></input>
                         </div>
                     </form>
                 </div>
