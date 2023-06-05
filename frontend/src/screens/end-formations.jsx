@@ -38,6 +38,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
             data.fullFormationList[i].visualization = 'novis'
         }
     }
+
     const formOne = data.fullFormationList[0].formation
     const formOneTitle = formOne.substring(0, formOne.indexOf('-'))
     const formOneShape = formOneTitle.substring(11)
@@ -136,7 +137,7 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
     const renderFormationDetails = (fms) => {
         var detailsParsed = parseFormationDetails(fms);
         return(
-            <ul className='formationDetailsList'>
+            <ul className='finalFormationDetailsList'>
                 {
                     detailsParsed.map(detail => {
                         return <li>{detail}</li>
@@ -186,43 +187,77 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                         <div className='finalFormationCard' id='formation-1' style={{display: 'flex'}}>
                             <h3>1. {formOneShape}</h3>
                             <div className='formationDetails'>
-                                {renderFormationDetails(formTwoDetail)}
-                                <img src={'/src/assets/' + data.startFormationList[1].visualization + '.png'}></img>
+                                {renderFormationDetails(formOneDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[0].visualization + '.png'}></img>
                              </div>
                         </div>
                         <div className='finalFormationCard' id='formation-2' style={{display: 'none'}}>
                             <h3>2. {formTwoShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formTwoDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[1].visualization + '.png'}></img>
+                             </div>
                         </div>
                         <div className='finalFormationCard' id='formation-3' style={{display: 'none'}}>
                             <h3>3. {formThreeShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formThreeDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[2].visualization + '.png'}></img>
+                             </div>
                         </div>
                         <div className='finalFormationCard' id='formation-4' style={{display: 'none'}}>
                             <h3>4. {formFourShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formFourDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[3].visualization + '.png'}></img>
+                             </div>
                         </div>
                         <div className='finalFormationCard' id='formation-5' style={{display: 'none'}}>
                             <h3>5. {formFiveShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formFiveDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[4].visualization + '.png'}></img>
+                             </div>
                         </div>
                         <div className='finalFormationCard' id='formation-6' style={{display: 'none'}}>
                             <h3>6. {formSixShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formSixDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[5].visualization + '.png'}></img>
+                             </div>
                         </div>
                         <div className='finalFormationCard' id='formation-7' style={{display: 'none'}}>
                             <h3>7. {formSevenShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formSevenDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[6].visualization + '.png'}></img>
+                             </div>
                         </div>
                         <div className='finalFormationCard' id='formation-8' style={{display: 'none'}}>
                             <h3>8. {formEightShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formEightDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[7].visualization + '.png'}></img>
+                             </div>
                         </div>
                         <div className='finalFormationCard' id='formation-9' style={{display: 'none'}}>
                             <h3>9. {formNineShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formNineDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[8].visualization + '.png'}></img>
+                             </div>
                         </div>
                         <div className='finalFormationCard' id='formation-10' style={{display: 'none'}}>
                             <h3>10. {formTenShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formTenDetail)}
+                                <img src={'/src/assets/' + data.fullFormationList[9].visualization + '.png'}></img>
+                             </div>
                         </div>
                     </div>
                     <FontAwesomeIcon icon={faChevronRight} size='3x' className='carouselButton' onClick={carouselNext} />
                 </div>
-                <div className='finalFormationsButtonsContainer'>
-                    <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
-                </div>
+                <button className='continueToCostumesButton' onClick={() => goToCostumes()}>continue to costumes</button>
             </div>
         </div>
     )
