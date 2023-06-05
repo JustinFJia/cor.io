@@ -143,154 +143,38 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
                 <p className='headerText'>Here are the other formations based on the starting formation you selected. Click on one for a more in-depth description.</p>
                 <div className='formationCardsContainer'>
                     <div className='finalFormationCard' id='formation-1' onClick={() => togglePopupFormation(0)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formOneShape}</p>
                     </div>
                     <div className='finalFormationCard' id='formation-2' onClick={() => togglePopupFormation(1)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formTwoShape}</p>
                     </div>
                     <div className='finalFormationCard' id='formation-3' onClick={() => togglePopupFormation(2)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formThreeShape}</p>
                     </div>
                     <div className='finalFormationCard' id='formation-4' onClick={() => togglePopupFormation(3)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formFourShape}</p>
                     </div>
                     <div className='finalFormationCard' id='formation-5' onClick={() => togglePopupFormation(4)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formFiveShape}</p>
                     </div>
-                </div>
-                <div className='formationCardsContainer'>
                     <div className='finalFormationCard' id='formation-6' onClick={() => togglePopupFormation(5)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formSixShape}</p>
                     </div>
                     <div className='finalFormationCard' id='formation-7' onClick={() => togglePopupFormation(6)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formSevenShape}</p>
                     </div>
                     <div className='finalFormationCard' id='formation-8' onClick={() => togglePopupFormation(7)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formEightShape}</p>
                     </div>
                     <div className='finalFormationCard' id='formation-9' onClick={() => togglePopupFormation(8)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formNineShape}</p>
                     </div>
                     <div className='finalFormationCard' id='formation-10' onClick={() => togglePopupFormation(9)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formTenShape}</p>
                     </div>
                 </div>
-                <div className='formationCardsContainer'>
-                    <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate formations</button>
+                <div className='finalFormationsButtonsContainer'>
                     <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(0)} />
-                    <h1>{formOneTitle}</h1>
-                    <p>{formOneDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[0].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[0].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(1)} />
-                    <h1>{formTwoTitle}</h1>
-                    <p>{formTwoDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[1].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[1].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(2)} />
-                    <h1>{formThreeTitle}</h1>
-                    <p>{formThreeDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[2].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[2].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(3)} />
-                    <h1>{formFourTitle}</h1>
-                    <p>{formFourDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[3].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[3].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(4)} />
-                    <h1>{formFiveTitle}</h1>
-                    <p>{formFiveDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[4].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[4].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(5)} />
-                    <h1>{formSixTitle}</h1>
-                    <p>{formSixDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[5].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[5].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(6)} />
-                    <h1>{formSevenTitle}</h1>
-                    <p>{formSevenDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[6].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[6].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(7)} />
-                    <h1>{formEightTitle}</h1>
-                    <p>{formEightDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[7].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[7].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(8)} />
-                    <h1>{formNineTitle}</h1>
-                    <p>{formNineDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[8].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[8].transition}</p>
-                </div>
-            </div>
-            <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(9)} />
-                    <h1>{formTenTitle}</h1>
-                    <p>{formTenDetail}</p>
-                    <img src={'/src/assets/' + data.fullFormationList[9].visualization + '.png'}></img>
-                    <p>{data.fullFormationList[9].transition}</p>
-                </div>
-            </div>
-            <div className='requeryPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupRequery()} />
-                    <p>Great! Do you have any feedback you want to include in your requery?</p>
-                    <form className='userInput'>
-                        <input type="text" className='userFeedback' onChange={(e) => updateFeedback(e.target.value)} onKeyDown={(e) => requery(e, 'key')}></input>
-                        <div className='requeryButtonsContainer'>
-                            <button className='skipFeedbackButton' onClick={(e) => skipFeedback(e)}>skip feedback</button>
-                            <input type="submit" value="submit feedback" className='getSongButton' onClick={(e) => requery(e, 'click')}></input>
-                        </div>
-                    </form>
                 </div>
             </div>
         </div>
