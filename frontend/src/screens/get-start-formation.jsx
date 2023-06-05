@@ -237,7 +237,7 @@ const GetStartFormation = ({ updateCentralInfo }) => {
                         <input type="text" className='userFeedback' onChange={(e) => updateFeedback(e.target.value)} onKeyDown={(e) => requery(e, 'key')}></input>
                         <div className='requeryButtonsContainer'>
                             <button className='skipFeedbackButton' onClick={(e) => skipFeedback(e)}>skip feedback</button>
-                            <input type="submit" value="submit feedback" className='getSongButton' onClick={(e) => requery(e, 'click')}></input>
+                            <input type="submit" value="submit feedback" className='submitFeedbackButton' onClick={(e) => requery(e, 'click')}></input>
                         </div>
                     </form>
                 </div>

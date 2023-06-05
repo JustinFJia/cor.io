@@ -99,8 +99,8 @@ const SelectSong = ({ updateCentralInfo }) => {
                     <form className='userInput'>
                         <input type="text" className='userFeedback' onChange={(e) => updateFeedback(e.target.value)} onKeyDown={(e) => requery(e, 'key')}></input>
                         <div className='requeryButtonsContainer'>
-                            <button className='skipFeedbackSongButton' onClick={(e) => skipFeedback(e)}>skip feedback</button>
-                            <input type="submit" value="submit feedback" className='submitFeedbackSongButton' onClick={(e) => requery(e, 'click')}></input>
+                            <button className='skipFeedbackButton' onClick={(e) => skipFeedback(e)}>skip feedback</button>
+                            <input type="submit" value="submit feedback" className='submitFeedbackButton' onClick={(e) => requery(e, 'click')}></input>
                         </div>
                     </form>
                 </div>
