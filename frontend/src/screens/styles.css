@@ -209,6 +209,7 @@ input {
 .getSongButton:hover, .getSongButton:active, .getSongButton:focus {
     background-color: #5281FA;
     border: 1px solid #5281FA;
+    transition: 0.3s ease;
 }
 
 /* select.song.jsx */
@@ -427,6 +428,7 @@ input {
     background-color: #ED548F;
     border: none;
     color: white;
+    transition: 0.3s ease;
 }
 
 .submitFeedbackButton {
@@ -441,6 +443,7 @@ input {
 .submitFeedbackButton:hover, .submitFeedbackButton:focus, .submitFeedbackButton:active {
     background: linear-gradient(270deg, #ED548F 0%, #A348AA 100%);
     border: none;
+    transition: 0.3s ease;
 }
 
 /* get-start-formation.jsx */
