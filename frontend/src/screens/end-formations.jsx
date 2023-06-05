@@ -4,13 +4,15 @@ import { Link } from "react-router-dom";
 import './styles.css';
 import logoWhite from '../assets/logo-white.png';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faArrowLeft, faArrowRotateRight, faXmark, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { faArrowLeft, faChevronLeft, faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { useContext } from 'react';
 import { CentralInfoContext } from '../context';
 
 const GetMoreFormations = ({ updateCentralInfo }) => {
 
     const navigate = useNavigate()
+
+    var currentIndex = 0;
 
     const [feedback, updateFeedback] = useState(undefined)
 
@@ -113,65 +115,110 @@ const GetMoreFormations = ({ updateCentralInfo }) => {
         }
     }
 
-    const togglePopupFormation = (i) => {
-        const modal = document.getElementsByClassName('formationPopupBox')[i]
-        if (modal.style.display == 'flex') {
-            modal.style.display = 'none'
-        } else {
-            modal.style.display = 'flex'
+    // Breaks formation details into array of bullet points
+    const parseFormationDetails =(fm) => {
+        var indices = [];
+        for (var i=0; i<fm.length; i++) {
+            if (fm[i] === "-") indices.push(i);
         }
+        var details = [];
+        for (var i=0; i<indices.length; i++) {
+            if (i < indices.length-1) {
+                details.push(fm.substring((indices[i] + 2), indices[i+1]));
+            }
+            else {
+                details.push(fm.substring((indices[i] + 2)));
+            }
+        }
+        return details;
     }
 
-    const togglePopupRequery = () => {
-        const modal = document.getElementsByClassName('requeryPopupBox')[0];
-        if (modal.style.display == 'flex') {
-            modal.style.display = 'none'
+    const renderFormationDetails = (fms) => {
+        var detailsParsed = parseFormationDetails(fms);
+        return(
+            <ul className='formationDetailsList'>
+                {
+                    detailsParsed.map(detail => {
+                        return <li>{detail}</li>
+                    })
+                }
+            </ul>
+        );
+    }
+
+    const carouselNext = () => {
+        console.log(currentIndex);
+        document.getElementsByClassName('finalFormationCard')[currentIndex].style.display = 'none';
+        if ((currentIndex + 1) > 9) {
+            currentIndex = 0;
         } else {
-            modal.style.display = 'flex'
+            currentIndex += 1;
         }
+        console.log(currentIndex);
+        document.getElementsByClassName('finalFormationCard')[currentIndex].style.display = 'flex';
+    }
+
+    const carouselBack = () => {
+        console.log(currentIndex);
+        document.getElementsByClassName('finalFormationCard')[currentIndex].style.display = 'none';
+        if ((currentIndex - 1) < 0) {
+            currentIndex = 9;
+        } else {
+            currentIndex -= 1;
+        }
+        console.log(currentIndex);
+        document.getElementsByClassName('finalFormationCard')[currentIndex].style.display = 'flex';
     }
 
     return (
         <div className='selectMoreFormationBox'>
             <div id='loader-container'></div>
             <div className='headerWhite'>
-                <Link to='/start-formations'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <Link to='/start-formations'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite fullFormationsBackButton' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectMoreFormationContent'>
-                <p className='headerText'>Here are the other formations based on the starting formation you selected. Click on one for a more in-depth description.</p>
-                <div className='formationCardsContainer'>
-                    <div className='finalFormationCard' id='formation-1' onClick={() => togglePopupFormation(0)}>
-                        <p>{formOneShape}</p>
+                <h2>Here’s your formation story.</h2>
+                <div className='carouselContainer'>
+                    <FontAwesomeIcon icon={faChevronLeft} size='3x' className='carouselButton' onClick={carouselBack} />
+                    <div className='endFormationCardsContainer'>
+                        <div className='finalFormationCard' id='formation-1' style={{display: 'flex'}}>
+                            <h3>1. {formOneShape}</h3>
+                            <div className='formationDetails'>
+                                {renderFormationDetails(formTwoDetail)}
+                                <img src={'/src/assets/' + data.startFormationList[1].visualization + '.png'}></img>
+                             </div>
+                        </div>
+                        <div className='finalFormationCard' id='formation-2' style={{display: 'none'}}>
+                            <h3>2. {formTwoShape}</h3>
+                        </div>
+                        <div className='finalFormationCard' id='formation-3' style={{display: 'none'}}>
+                            <h3>3. {formThreeShape}</h3>
+                        </div>
+                        <div className='finalFormationCard' id='formation-4' style={{display: 'none'}}>
+                            <h3>4. {formFourShape}</h3>
+                        </div>
+                        <div className='finalFormationCard' id='formation-5' style={{display: 'none'}}>
+                            <h3>5. {formFiveShape}</h3>
+                        </div>
+                        <div className='finalFormationCard' id='formation-6' style={{display: 'none'}}>
+                            <h3>6. {formSixShape}</h3>
+                        </div>
+                        <div className='finalFormationCard' id='formation-7' style={{display: 'none'}}>
+                            <h3>7. {formSevenShape}</h3>
+                        </div>
+                        <div className='finalFormationCard' id='formation-8' style={{display: 'none'}}>
+                            <h3>8. {formEightShape}</h3>
+                        </div>
+                        <div className='finalFormationCard' id='formation-9' style={{display: 'none'}}>
+                            <h3>9. {formNineShape}</h3>
+                        </div>
+                        <div className='finalFormationCard' id='formation-10' style={{display: 'none'}}>
+                            <h3>10. {formTenShape}</h3>
+                        </div>
                     </div>
-                    <div className='finalFormationCard' id='formation-2' onClick={() => togglePopupFormation(1)}>
-                        <p>{formTwoShape}</p>
-                    </div>
-                    <div className='finalFormationCard' id='formation-3' onClick={() => togglePopupFormation(2)}>
-                        <p>{formThreeShape}</p>
-                    </div>
-                    <div className='finalFormationCard' id='formation-4' onClick={() => togglePopupFormation(3)}>
-                        <p>{formFourShape}</p>
-                    </div>
-                    <div className='finalFormationCard' id='formation-5' onClick={() => togglePopupFormation(4)}>
-                        <p>{formFiveShape}</p>
-                    </div>
-                    <div className='finalFormationCard' id='formation-6' onClick={() => togglePopupFormation(5)}>
-                        <p>{formSixShape}</p>
-                    </div>
-                    <div className='finalFormationCard' id='formation-7' onClick={() => togglePopupFormation(6)}>
-                        <p>{formSevenShape}</p>
-                    </div>
-                    <div className='finalFormationCard' id='formation-8' onClick={() => togglePopupFormation(7)}>
-                        <p>{formEightShape}</p>
-                    </div>
-                    <div className='finalFormationCard' id='formation-9' onClick={() => togglePopupFormation(8)}>
-                        <p>{formNineShape}</p>
-                    </div>
-                    <div className='finalFormationCard' id='formation-10' onClick={() => togglePopupFormation(9)}>
-                        <p>{formTenShape}</p>
-                    </div>
+                    <FontAwesomeIcon icon={faChevronRight} size='3x' className='carouselButton' onClick={carouselNext} />
                 </div>
                 <div className='finalFormationsButtonsContainer'>
                     <button className='selectFormationButton' onClick={() => goToCostumes()}>continue</button>
