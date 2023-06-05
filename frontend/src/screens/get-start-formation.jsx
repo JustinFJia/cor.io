@@ -57,6 +57,37 @@ const GetStartFormation = ({ updateCentralInfo }) => {
     const formFiveShape = formFiveTitle.substring(11)
     const formFiveDetail = formFive.substring(formFive.indexOf('-'))
 
+    // Breaks formation details into array of bullet points
+    const parseFormationDetails =(fm) => {
+        var indices = [];
+        for (var i=0; i<fm.length; i++) {
+            if (fm[i] === "-") indices.push(i);
+        }
+        var details = [];
+        for (var i=0; i<indices.length; i++) {
+            if (i < indices.length-1) {
+                details.push(fm.substring((indices[i] + 2), indices[i+1]));
+            }
+            else {
+                details.push(fm.substring((indices[i] + 2)));
+            }
+        }
+        return details;
+    }
+
+    const renderFormationDetails = (fms) => {
+        var detailsParsed = parseFormationDetails(fms);
+        return(
+            <ul className='formationDetailsList'>
+                {
+                    detailsParsed.map(detail => {
+                        return <li>{detail}</li>
+                    })
+                }
+            </ul>
+        );
+    }
+
     const skipFeedback = (e) => {
         updateFeedback('')
         requery(e, 'click')
@@ -117,81 +148,85 @@ const GetStartFormation = ({ updateCentralInfo }) => {
         <div className='selectStartFormationBox'>
             <div id='loader-container'></div>
             <div className='headerWhite'>
-                <Link to='/songs'><FontAwesomeIcon icon={faArrowLeft} className='backButtonWhite' size='3x' /></Link>
+                <Link to='/songs'><FontAwesomeIcon icon={faArrowLeft} className='backButtonStartFormation' size='3x' /></Link>
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
             <div className='selectStartFormationContent'>
-                <p className='headerText'>Here’s a list of 5 starting formations. Click on one for a more in-depth description.</p>
+                <h2>Now, let’s pick out some dancer formations.</h2>
+                <p className='headerText'>Here are five starting dancer formations. Click on one for more information.</p>
                 <div className='formationCardsContainer'>
                     <div className='formationCard' id='formation-1' onClick={() => togglePopupFormation(0)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formOneShape}</p>
                     </div>
                     <div className='formationCard' id='formation-2' onClick={() => togglePopupFormation(1)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formTwoShape}</p>
                     </div>
                     <div className='formationCard' id='formation-3' onClick={() => togglePopupFormation(2)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formThreeShape}</p>
                     </div>
-                </div>
-                <div className='formationCardsContainer'>
                     <div className='formationCard' id='formation-4' onClick={() => togglePopupFormation(3)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formFourShape}</p>
                     </div>
                     <div className='formationCard' id='formation-5' onClick={() => togglePopupFormation(4)}>
-                        <FontAwesomeIcon icon={faCircleInfo} className='infoToolTip' />
                         <p>{formFiveShape}</p>
                     </div>
                 </div>
-                <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate formations</button>
+                <button className='requeryFormationsButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate formations list</button>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
+                <div className='formationPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(0)} />
-                    <h1>{formOneTitle}</h1>
-                    <p>{formOneDetail}</p>
-                    <img src={'/src/assets/' + data.startFormationList[0].visualization + '.png'}></img>
-                    <button className='selectFormationButton' onClick={() => goToFullFormations(1)}>select this formation</button>
+                    <h3>{formOneTitle}</h3>
+                    <div className='formationDetails'>
+                        {renderFormationDetails(formOneDetail)}
+                        <img src={'/src/assets/' + data.startFormationList[0].visualization + '.png'}></img>
+                    </div>
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(1)}>use this formation</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
+                <div className='formationPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(1)} />
-                    <h1>{formTwoTitle}</h1>
-                    <p>{formTwoDetail}</p>
-                    <img src={'/src/assets/' + data.startFormationList[1].visualization + '.png'}></img>
-                    <button className='selectFormationButton' onClick={() => goToFullFormations(2)}>select this formation</button>
+                    <h3>{formTwoTitle}</h3>
+                    <div className='formationDetails'>
+                        {renderFormationDetails(formTwoDetail)}
+                        <img src={'/src/assets/' + data.startFormationList[1].visualization + '.png'}></img>
+                    </div>
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(2)}>use this formation</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
-                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(2)} />
-                    <h1>{formThreeTitle}</h1>
-                    <p>{formThreeDetail}</p>
-                    <img src={'/src/assets/' + data.startFormationList[2].visualization + '.png'}></img>
-                    <button className='selectFormationButton' onClick={() => goToFullFormations(3)}>select this formation</button>
+                <div className='formationPopupContainer'>
+                    <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer closeFormationPopup' onClick={() => togglePopupFormation(2)} />
+                    <h3>{formThreeTitle}</h3>
+                    <div className='formationDetails'>
+                        {renderFormationDetails(formThreeDetail)}
+                        <img src={'/src/assets/' + data.startFormationList[2].visualization + '.png'}></img>
+                    </div>
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(3)}>use this formation</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
+                <div className='formationPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(3)} />
-                    <h1>{formFourTitle}</h1>
-                    <p>{formFourDetail}</p>
-                    <img src={'/src/assets/' + data.startFormationList[3].visualization + '.png'}></img>
-                    <button className='selectFormationButton' onClick={() => goToFullFormations(4)}>select this formation</button>
+                    <h3>{formFourTitle}</h3>
+                    <div className='formationDetails'>
+                        {renderFormationDetails(formFourDetail)}
+                        <img src={'/src/assets/' + data.startFormationList[3].visualization + '.png'}></img>
+                    </div>
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(4)}>use this formation</button>
                 </div>
             </div>
             <div className='formationPopupBox' style={{ display: 'none' }}>
-                <div className='requeryPopupContainer'>
+                <div className='formationPopupContainer'>
                     <FontAwesomeIcon icon={faXmark} size='xl' className='closePopupContainer' onClick={() => togglePopupFormation(4)} />
-                    <h1>{formFiveTitle}</h1>
-                    <p>{formFiveDetail}</p>
-                    <img src={'/src/assets/' + data.startFormationList[4].visualization + '.png'}></img>
-                    <button className='selectFormationButton' onClick={() => goToFullFormations(5)}>select this formation</button>
+                    <h3>{formFiveTitle}</h3>
+                    <div className='formationDetails'>
+                        {renderFormationDetails(formFiveDetail)}
+                        <img src={'/src/assets/' + data.startFormationList[4].visualization + '.png'}></img>
+                    </div>
+                    <button className='selectFormationButton' onClick={() => goToFullFormations(5)}>use this formation</button>
                 </div>
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>
