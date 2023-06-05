@@ -59,11 +59,21 @@ const GetCostume = ({ updateCentralInfo }) => {
                 <h1><Link to="/"><img src={logoWhite} alt='logo'></img></Link></h1>
                 <div className='headerSpacer'></div>
             </div>
+            <div className='headerText'>
+                    <h2>Here's a possible costume scheme.</h2>
+                    <p>You can follow it directly or use it for inspiration!</p>
+            </div> 
             <div className='getCostumeContent'>
-                <p className='headerText'>See your curated costume scheme below. Follow it directly or use it for inspiration!</p>
-                <p>{data.costumes.costumeSchema}</p>
+                <div class='bigCostumes'>
+                <div class='costumeDetails'>
+                    <p>{data.costumes.costumeSchema}</p>
+                    <button className='requeryButtonCost' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate costumes</button>
+                </div>
                 <img src={vis}></img>
-                <button className='requeryButton' id='requery' onClick={() => togglePopupRequery()}><FontAwesomeIcon icon={faArrowRotateRight} className='requery' size='lg' />regenerate costumes</button>
+
+                </div>
+                
+                
             </div>
             <div className='requeryPopupBox' style={{ display: 'none' }}>
                 <div className='requeryPopupContainer'>
