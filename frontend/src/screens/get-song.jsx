@@ -13,7 +13,7 @@ const GetSong = ({ updateCentralInfo }) => {
     const [vibes, updateVibes] = useState(undefined);
 
     const goToSongsList = async (event, cause) => {
-        if (cause == 'key' && event.key != 'Enter') {
+        if ((cause == 'key' && event.key != 'Enter') || document.getElementById('userVibes').value == "") {
             return;
         }
         event.preventDefault()
@@ -44,7 +44,7 @@ const GetSong = ({ updateCentralInfo }) => {
                 <div className='getSongContent'>
                     <p>What are the vibes you envision?</p>
                     <form className='userInput'>
-                        <input type="text" className='userVibes' onChange={(e) => updateVibes(e.target.value)} onKeyDown={(e) => goToSongsList(e, 'key')}></input>
+                        <input required type="text" id='userVibes' className='userVibes' onChange={(e) => updateVibes(e.target.value)} onKeyDown={(e) => goToSongsList(e, 'key')}></input>
                         <input type="submit" value="submit" className='getSongButton' onClick={(e) => goToSongsList(e, 'click')}></input>
                     </form>
                 </div>
